@@ -1,0 +1,31 @@
+package com.paremal.sheebu.data_structure.tree;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+public class BinaryTreeTest {
+    BinaryTree tree;
+
+    @Before
+    public void setup(){
+        tree=new BinaryTree();
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+    }
+
+    @Test
+    public void testCollect(){
+        List<Integer> clist=tree.collect();
+        assertEquals(Arrays.asList(20,30,40,50,60,70,80),clist);
+    }
+}

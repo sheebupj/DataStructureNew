@@ -1,5 +1,8 @@
 package com.paremal.sheebu.data_structure.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Node Class
 class Node {
     int key;
@@ -40,6 +43,19 @@ public class BinaryTree {
 
         // return the (unchanged) node pointer
         return root;
+    }
+    List<Integer> collect(){
+        List<Integer> collectorList=new ArrayList<>();
+        return collectDataFromTree(root,collectorList);
+    }
+
+    private List<Integer> collectDataFromTree(Node node, List<Integer> collectorList) {
+        if(node!=null){
+            collectorList=collectDataFromTree(node.left,collectorList);
+            collectorList.add(node.key);
+            collectorList=collectDataFromTree(node.right,collectorList);
+        }
+        return collectorList;
     }
 
     // Method to print the tree inorder
