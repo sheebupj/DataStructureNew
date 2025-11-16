@@ -9,11 +9,11 @@ public class CobineListAndSort {
         System.out.println(getCombinedSortedList(twodInts));
     }
 
-    public static List<Integer> getCombinedSortedList(Integer[][] twodInts) {
-        /* first convert two dimitional array to List of List then combine List fo lIst to single list
-        using stream and flatmap and sort it to a list of Integers
+    public static List<Integer> getCombinedSortedList(Integer[][] twoDints) {
+        /* first convert two-dimensional array to List of List, then combine List fo lIst to single list
+        using stream and flatmap, and sort it to a list of Integers
          */
-        return Stream.of(twodInts)
+        return Stream.of(twoDints)
                 .map(l-> Stream.of(l).
                         toList())//converting each array to list
                 .toList()//make it to list of list

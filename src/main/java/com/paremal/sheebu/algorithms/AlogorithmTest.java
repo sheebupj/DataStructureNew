@@ -276,7 +276,7 @@ public class AlogorithmTest {
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
     }
     @Test
-    public void getCombinedSortedListTest(){
+    public void combinedSortedListTest(){
 
         Integer[][] input= {{1,4,5},{1,3,4},{2,6}};
         Integer[][] input2= {{11,214,-5},{-31,443,24},{42,-96},{1,4,5},{1,3,4},{2,6}};
