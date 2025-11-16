@@ -275,4 +275,17 @@ public class AlogorithmTest {
         List<List<Integer>> actualVerticalFlip= FlipRotate.verticalFlip(inputLList);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
     }
+    @Test
+    public void getCombinedSortedListTest(){
+
+        Integer[][] input= {{1,4,5},{1,3,4},{2,6}};
+        Integer[][] input2= {{11,214,-5},{-31,443,24},{42,-96},{1,4,5},{1,3,4},{2,6}};
+
+        List<Integer> expected=List.of(1, 1, 2, 3, 4, 4, 5, 6);
+        List<Integer> expected2=List.of(-96, -31, -5, 1, 1, 2, 3, 4, 4, 5, 6, 11, 24, 42, 214, 443);
+        Assertions.assertEquals(expected, CobineListAndSort.getCombinedSortedList(input));
+        Assertions.assertEquals(expected2, CobineListAndSort.getCombinedSortedList(input2));
+
+    }
+
 }
