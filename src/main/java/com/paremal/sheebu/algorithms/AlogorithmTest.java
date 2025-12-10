@@ -28,6 +28,22 @@ public class AlogorithmTest {
 
     }
 
+    /*
+    Given the array of strings. Each string contains two parts - Word and its count separated by comma(,):
+
+    - Filter by word(1st part) length > 4
+
+    - Sort by word count(2nd part) desc
+
+    - Find 2nd highest word based on above sorted result
+
+    Solve using Java Streams API
+
+    String[] strArray = {"POINT,2342342", "POINTS,2341345", "OF,34534345", "VIEWS,2342342223423", "IS,432234", "QWERTY,234234222"};
+
+    Output: QWERTY
+     */
+
     @Test
     public void FilterSortTest() {
         FilterSort filterSort = new FilterSort();
@@ -240,6 +256,16 @@ public class AlogorithmTest {
     }
     @Test
     public void testFlipRotateTest(){
+
+        /*
+        1 2 3
+        4 5 6
+        7 8 9
+        after rotating clockwise 90 degree
+        7 4 1
+        8 5 2
+        9 6 3
+         */
         List<List<Integer>> inputLList= new ArrayList<>();
         inputLList.add(Arrays.asList(1,2,3));
         inputLList.add(Arrays.asList(4,5,6));
@@ -253,6 +279,15 @@ public class AlogorithmTest {
         List<List<Integer>> actual= FlipRotate.rotateClockWise(inputLList);
         Assertions.assertEquals(expected,actual);
 
+        /*
+        1 2 3
+        4 5 6
+        7 8 9
+        After rotating anti-clockwise 90 degree
+        3 6 9
+        2 5 8
+        1 4 7
+         */
         List<List<Integer>> expectedAntiCwise= new ArrayList<>();
         expectedAntiCwise.add(Arrays.asList(3,6,9));
         expectedAntiCwise.add(Arrays.asList(2,5,8));
@@ -261,6 +296,15 @@ public class AlogorithmTest {
         List<List<Integer>> actualAntiClwise= FlipRotate.rotateAntiClockWise(inputLList);
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise);
 
+        /*
+        1 2 3
+        4 5 6
+        7 8 9
+        after flipping horizontally
+        3 2 1
+        6 5 4
+        9 8 7
+         */
         List<List<Integer>> expectedHrzdFlip= new ArrayList<>();
         expectedHrzdFlip.add(Arrays.asList(3,2,1));
         expectedHrzdFlip.add(Arrays.asList(6,5,4));
@@ -268,6 +312,15 @@ public class AlogorithmTest {
         List<List<Integer>> actualHrzdFlip= FlipRotate.horizondalFlip(inputLList);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip);
 
+        /*
+        1 2 3
+        4 5 6
+        7 8 9
+        after flipping  vertically
+        7 8 9
+        4 5 6
+        1 2 3
+         */
         List<List<Integer>> expectedVerticalFlip= new ArrayList<>();
         expectedVerticalFlip.add(Arrays.asList(7,8,9));
         expectedVerticalFlip.add(Arrays.asList(4,5,6));
