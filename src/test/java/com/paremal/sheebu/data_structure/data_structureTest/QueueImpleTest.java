@@ -1,4 +1,4 @@
-package com.paremal.sheebu.data_structureTest;
+package com.paremal.sheebu.data_structure.data_structureTest;
 
 //import org.junit.BeforeClass;
 //import org.junit.Test;

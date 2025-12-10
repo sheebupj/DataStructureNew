@@ -1,5 +1,6 @@
 package com.paremal.sheebu.algorithms;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -18,7 +19,7 @@ public class CobineListAndSort {
                         toList())//converting each array to list
                 .toList()//make it to list of list
                 .stream()
-                .flatMap(l -> l.stream())//convert each list to stream and flatmap it to single stream
+                .flatMap(Collection::stream)//convert each list to stream and flatmap it to single stream
                 .sorted()
                 .toList();
     }

@@ -84,7 +84,7 @@ public class AlogorithmTest {
     @Test
     public void testFindCharPosistions() {
         String str = "The graphic and.";
-        List<Integer> expected = Arrays.asList(12);
+        List<Integer> expected = List.of(12);
         FindStringPositionsInSentence fInstance = new FindStringPositionsInSentence();
         List<Integer> actual = fInstance.findWordPositions(str, "and");
         String str1 = "The graphic and and andand";
@@ -110,7 +110,6 @@ public class AlogorithmTest {
 
     @Test
     public void NumberOfNotesFromAmtTest() {
-        Integer amount = 2888;
         Map<Integer, Integer> notesMap2888 = NumberOfNotesFromAmt.getNumberOfNotesFrAmt(2888);
         Assertions.assertArrayEquals(getepectedNotesMap2888().entrySet().toArray(), notesMap2888.entrySet().toArray());
         Map<Integer, Integer> notesMapWithStream = NumberOfNotesFromAmt.getNumberOfNotesFrAmtStream(2888);

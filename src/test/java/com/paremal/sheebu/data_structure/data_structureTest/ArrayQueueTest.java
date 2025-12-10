@@ -1,4 +1,4 @@
-package com.paremal.sheebu.data_structureTest;
+package com.paremal.sheebu.data_structure.data_structureTest;
 
 
 public class ArrayQueueTest {
