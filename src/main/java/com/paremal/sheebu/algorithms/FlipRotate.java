@@ -103,30 +103,52 @@ public class FlipRotate {
 
     static List<List<Integer>> verticalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
+
+        //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+
+        //create two-dimensional array for storing result
         Integer[][] resultArr2d = new Integer[size][size];
+
+        //array index start at 0 so for accessing end of row or column is size-1
         int indexsize = size - 1;
+
+        //iterate values for rows
         for (int i = 0; i < size; i++) {
+
+            //iterate values for columns
             for (int j = 0; j < size; j++) {
                 resultArr2d[indexsize - i][j] = arr2d[i][j];
             }
         }
 
+        //convert two-dimensional array to two-dimensional list and return
         return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
 
     }
 
     static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
+
+        //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+
+        //create two-dimensional array for storing result
         Integer[][] resultArr2d = new Integer[size][size];
+
+        //array index start at 0 so for accessing end of row or column is size-1
         int indexsize = size - 1;
+
+        //iterate values for rows
         for (int i = 0; i < size; i++) {
+
+            //iterate values for columns
             for (int j = 0; j < size; j++) {
                 resultArr2d[i][indexsize - j] = arr2d[i][j];
             }
         }
 
+        //convert two-dimensional array to two-dimensional list and return
         return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
 
     }
@@ -134,33 +156,54 @@ public class FlipRotate {
 
     static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
-        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+
+        //converting two-dimensional list to two-dimensional array
+        Integer[][] arr2d = inputList.stream()
+                .map(l -> l.stream().toArray(Integer[]::new))
+                .toArray(Integer[][]::new);
+
+        //create two-dimensional array for storing result
         Integer[][] resultArr2d = new Integer[size][size];
-        int indexsize = size - 1;
+
+        //array index start at 0 so for accessing end of row or column is size-1
+        int indexSize = size - 1;
+
+        //iterate values for rows
         for (int i = 0; i < size; i++) {
+            //iterate values for columns
             for (int j = 0; j < size; j++) {
-                resultArr2d[j][indexsize - i] = arr2d[i][j];
+                resultArr2d[j][indexSize - i] = arr2d[i][j];
 
             }
         }
 
+        //convert two-dimensional array to two-dimensional list and return
         return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
 
     }
 
     static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
+
+        //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+
+        //create two-dimensional array for storing result
         Integer[][] resultArr2d = new Integer[size][size];
+
+        //array index start at 0 so for accessing end of row or column is size-1
         int indexsize = size - 1;
+
+        //iterate values for rows
         for (int i = 0; i < size; i++) {
+
+            //iterate values for rows
             for (int j = 0; j < size; j++) {
-
                 resultArr2d[indexsize - j][i] = arr2d[i][j];
-
             }
         }
 
+        //convert two-dimensional array to two-dimensional list and return
         return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
 
     }
