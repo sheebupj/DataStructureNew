@@ -277,7 +277,6 @@ public class FlipRotate {
     }
 
     static List<List<Integer>> rotateClockWise1(List<List<Integer>> inputList, Operation op) {
-        int size = inputList.size();
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream()
