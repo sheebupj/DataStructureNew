@@ -257,6 +257,65 @@ public class AlogorithmTest {
     @Test
     public void testFlipRotateTest(){
 
+        Operation cloakWise= (twoD->{
+            int size=twoD.length;
+            int indexSize=size-1;
+            //iterate values for rows
+            Integer[][] resultArr2d= new Integer[size][size];
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++) {
+                    resultArr2d[j][indexSize - i] = twoD[i][j];
+
+                }
+            }
+            return resultArr2d;
+        } );
+        Operation antiCloakWise= (twoD->{
+            int size=twoD.length;
+            int indexSize=size-1;
+            Integer[][] resultArr2d= new Integer[size][size];
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++) {
+                    resultArr2d[indexSize-j][ i] = twoD[i][j];
+
+                }
+            }
+            return resultArr2d;
+        } );
+
+        Operation flipHorizontal= (twoD->{
+            int size=twoD.length;
+            int indexSize=size-1;
+            Integer[][] resultArr2d= new Integer[size][size];
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++) {
+                    resultArr2d[i][ indexSize-j] = twoD[i][j];
+
+                }
+            }
+            return resultArr2d;
+        } );
+
+        Operation flipVertical= (twoD->{
+            int size=twoD.length;
+            int indexSize=size-1;
+            Integer[][] resultArr2d= new Integer[size][size];
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++) {
+                    resultArr2d[indexSize-i][ j] = twoD[i][j];
+
+                }
+            }
+            return resultArr2d;
+        } );
+
         /*
         1 2 3
         4 5 6
@@ -276,7 +335,7 @@ public class AlogorithmTest {
         expected.add(Arrays.asList(8,5,2));
         expected.add(Arrays.asList(9,6,3));
 
-        List<List<Integer>> actual= FlipRotate.rotateClockWise(inputLList);
+        List<List<Integer>> actual= FlipRotate.rotateClockWise(inputLList,cloakWise);
         Assertions.assertEquals(expected,actual);
 
         /*
@@ -293,7 +352,7 @@ public class AlogorithmTest {
         expectedAntiCwise.add(Arrays.asList(2,5,8));
         expectedAntiCwise.add(Arrays.asList(1,4,7));
 
-        List<List<Integer>> actualAntiClwise= FlipRotate.rotateAntiClockWise(inputLList);
+        List<List<Integer>> actualAntiClwise= FlipRotate.rotateAntiClockWise(inputLList,antiCloakWise);
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise);
 
         /*
@@ -309,7 +368,7 @@ public class AlogorithmTest {
         expectedHrzdFlip.add(Arrays.asList(3,2,1));
         expectedHrzdFlip.add(Arrays.asList(6,5,4));
         expectedHrzdFlip.add(Arrays.asList(9,8,7));
-        List<List<Integer>> actualHrzdFlip= FlipRotate.horizondalFlip(inputLList);
+        List<List<Integer>> actualHrzdFlip= FlipRotate.horizondalFlip(inputLList,flipHorizontal);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip);
 
         /*
@@ -325,7 +384,7 @@ public class AlogorithmTest {
         expectedVerticalFlip.add(Arrays.asList(7,8,9));
         expectedVerticalFlip.add(Arrays.asList(4,5,6));
         expectedVerticalFlip.add(Arrays.asList(1,2,3));
-        List<List<Integer>> actualVerticalFlip= FlipRotate.verticalFlip(inputLList);
+        List<List<Integer>> actualVerticalFlip= FlipRotate.verticalFlip(inputLList,flipVertical);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
     }
     @Test
