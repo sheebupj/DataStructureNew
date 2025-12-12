@@ -48,7 +48,10 @@ after flipping  vertically
 
  */
 
-
+@FunctionalInterface
+interface Operation {
+    Integer[][] doOp(Integer[][] doOp);
+}
 public class FlipRotate {
 
     public static void main(String[] args) {
@@ -293,7 +296,4 @@ public class FlipRotate {
 }
 
 
-@FunctionalInterface
-interface Operation {
-    Integer[][] doOp(Integer[][] doOp);
-}
+
