@@ -56,7 +56,7 @@ public class FlipRotate {
 
     public static void main(String[] args) {
 
-        Operation clockwise = (twoD -> {
+        Operation clockwise = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
             Integer[][] resultArr2d = new Integer[size][size];
@@ -69,9 +69,9 @@ public class FlipRotate {
                 }
             }
             return resultArr2d;
-        });
+        };
 
-        Operation antClockwise = (twoD -> {
+        Operation antClockwise = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
             Integer[][] resultArr2d = new Integer[size][size];
@@ -84,9 +84,9 @@ public class FlipRotate {
                 }
             }
             return resultArr2d;
-        });
+        };
 
-        Operation flipHorzontal = (twoD -> {
+        Operation flipHorzontal = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
             Integer[][] resultArr2d = new Integer[size][size];
@@ -99,9 +99,9 @@ public class FlipRotate {
                 }
             }
             return resultArr2d;
-        });
+        };
 
-        Operation flipVertical = (twoD -> {
+        Operation flipVertical = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
             Integer[][] resultArr2d = new Integer[size][size];
@@ -111,7 +111,7 @@ public class FlipRotate {
                 System.arraycopy(twoD[i], 0, resultArr2d[indexSize - i], 0, size);
             }
             return resultArr2d;
-        });
+        };
 
         List<Integer> a = List.of(20, 21, 22, 23);
         List<Integer> b = List.of(24, 25, 26, 27);
