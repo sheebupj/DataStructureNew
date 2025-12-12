@@ -110,7 +110,6 @@ public class AlogorithmTest {
 
     @Test
     public void NumberOfNotesFromAmtTest() {
-        Integer amount = 2888;
         Map<Integer, Integer> notesMap2888 = NumberOfNotesFromAmt.getNumberOfNotesFrAmt(2888);
         Assertions.assertArrayEquals(getepectedNotesMap2888().entrySet().toArray(), notesMap2888.entrySet().toArray());
         Map<Integer, Integer> notesMapWithStream = NumberOfNotesFromAmt.getNumberOfNotesFrAmtStream(2888);
@@ -308,10 +307,7 @@ public class AlogorithmTest {
             //iterate values for rows
             for (int i = 0; i < size; i++) {
                 //iterate values for columns
-                for (int j = 0; j < size; j++) {
-                    resultArr2d[indexSize-i][ j] = twoD[i][j];
-
-                }
+                System.arraycopy(twoD[i], 0, resultArr2d[indexSize - i], 0, size);
             }
             return resultArr2d;
         } );

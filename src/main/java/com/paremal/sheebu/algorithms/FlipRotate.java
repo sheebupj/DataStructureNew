@@ -175,7 +175,7 @@ public class FlipRotate {
     1 2 3
     */
     static List<List<Integer>> verticalFlip(List<List<Integer>> inputList, Operation op) {
-        int size = inputList.size();
+
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
@@ -196,7 +196,7 @@ public class FlipRotate {
     9 8 7
      */
     static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList, Operation op) {
-        int size = inputList.size();
+
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
@@ -219,7 +219,7 @@ public class FlipRotate {
     9 6 3
      */
     static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList, Operation clockeWise) {
-        int size = inputList.size();
+
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream()
@@ -243,7 +243,7 @@ public class FlipRotate {
     1 4 7
     */
     static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList, Operation op) {
-        int size = inputList.size();
+
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new))
