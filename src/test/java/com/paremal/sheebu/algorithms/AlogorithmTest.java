@@ -331,7 +331,7 @@ public class AlogorithmTest {
         expected.add(Arrays.asList(8,5,2));
         expected.add(Arrays.asList(9,6,3));
 
-        List<List<Integer>> actual= FlipRotate.rotateClockWise(inputLList,cloakWise);
+        List<List<Integer>> actual= FlipRotate.flipRotate(inputLList,cloakWise);
         Assertions.assertEquals(expected,actual);
 
         /*
@@ -348,7 +348,7 @@ public class AlogorithmTest {
         expectedAntiCwise.add(Arrays.asList(2,5,8));
         expectedAntiCwise.add(Arrays.asList(1,4,7));
 
-        List<List<Integer>> actualAntiClwise= FlipRotate.rotateAntiClockWise(inputLList,antiCloakWise);
+        List<List<Integer>> actualAntiClwise= FlipRotate.flipRotate(inputLList,antiCloakWise);
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise);
 
         /*
@@ -364,7 +364,7 @@ public class AlogorithmTest {
         expectedHrzdFlip.add(Arrays.asList(3,2,1));
         expectedHrzdFlip.add(Arrays.asList(6,5,4));
         expectedHrzdFlip.add(Arrays.asList(9,8,7));
-        List<List<Integer>> actualHrzdFlip= FlipRotate.horizondalFlip(inputLList,flipHorizontal);
+        List<List<Integer>> actualHrzdFlip= FlipRotate.flipRotate(inputLList,flipHorizontal);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip);
 
         /*
@@ -380,7 +380,7 @@ public class AlogorithmTest {
         expectedVerticalFlip.add(Arrays.asList(7,8,9));
         expectedVerticalFlip.add(Arrays.asList(4,5,6));
         expectedVerticalFlip.add(Arrays.asList(1,2,3));
-        List<List<Integer>> actualVerticalFlip= FlipRotate.verticalFlip(inputLList,flipVertical);
+        List<List<Integer>> actualVerticalFlip= FlipRotate.flipRotate(inputLList,flipVertical);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
     }
     @Test
