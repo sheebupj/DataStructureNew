@@ -132,121 +132,47 @@ public class FlipRotate {
 
         displayArray(IntArr2d);
 
-        List<List<Integer>> rlist = rotateClockWise(llist, clockwise);
+        List<List<Integer>> rlist = flipRotate(llist, clockwise);
         System.out.println("after rotating clockwise 90 degree");
         display(rlist);
-        List<List<Integer>> rlist2 = rotateClockWise(rlist, clockwise);
+        List<List<Integer>> rlist2 = flipRotate(rlist, clockwise);
         System.out.println("after rotating clockwise 90 degree");
         display(rlist2);
-        List<List<Integer>> rlist3 = rotateClockWise(rlist2, clockwise);
+        List<List<Integer>> rlist3 = flipRotate(rlist2, clockwise);
         System.out.println("after rotating clockwise 90 degree");
         display(rlist3);
-        List<List<Integer>> rlist4 = rotateClockWise(rlist3, clockwise);
+        List<List<Integer>> rlist4 = flipRotate(rlist3, clockwise);
         System.out.println("after rotating clockwise 90 degree");
         display(rlist4);
-        List<List<Integer>> rlist5 = rotateAntiClockWise(rlist4, antClockwise);
+        List<List<Integer>> rlist5 = flipRotate(rlist4, antClockwise);
         System.out.println("After rotating anti-clockwise 90 degree");
         display(rlist5);
-        List<List<Integer>> rlist5a = rotateClockWise(rlist5, clockwise);
+        List<List<Integer>> rlist5a = flipRotate(rlist5, clockwise);
         System.out.println("after rotating clockwise 90 degree");
         display(rlist5a);
-        List<List<Integer>> rlist6 = horizondalFlip(rlist5a, flipHorzontal);
+        List<List<Integer>> rlist6 = flipRotate(rlist5a, flipHorzontal);
         System.out.println("after flipping horizontally");
         display(rlist6);
-        List<List<Integer>> rlist6a = horizondalFlip(rlist6, flipHorzontal);
+        List<List<Integer>> rlist6a = flipRotate(rlist6, flipHorzontal);
         System.out.println("after flipping horizontally");
         display(rlist6a);
-        List<List<Integer>> rlist7 = verticalFlip(rlist6a, flipVertical);
+        List<List<Integer>> rlist7 = flipRotate(rlist6a, flipVertical);
         System.out.println("after flipping  vertically");
         display(rlist7);
-        List<List<Integer>> rlist7a = verticalFlip(rlist7, flipVertical);
+        List<List<Integer>> rlist7a = flipRotate(rlist7, flipVertical);
         System.out.println("after flipping  vertically");
         display(rlist7a);
 
      }
 
-    /*
-    1 2 3
-    4 5 6
-    7 8 9
-    after flipping  vertically
-    7 8 9
-    4 5 6
-    1 2 3
-    */
-    static List<List<Integer>> verticalFlip(List<List<Integer>> inputList, Operation verticalFlip) {
-
-
-        //converting two-dimensional list to two-dimensional array
-        Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
-
-        Integer[][] resultArr2d = verticalFlip.doOp(arr2d);
-
-        //convert two-dimensional array to two-dimensional list and return
-        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
-    }
-
-    /*
-    1 2 3
-    4 5 6
-    7 8 9
-    after flipping horizontally
-    3 2 1
-    6 5 4
-    9 8 7
-     */
-    static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList, Operation horizontalFlip) {
-
-
-        //converting two-dimensional list to two-dimensional array
-        Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
-
-         Integer[][] resultArr2d = horizontalFlip.doOp(arr2d);
-
-        //convert two-dimensional array to two-dimensional list and return
-        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
-
-    }
-
-    /*
-    1 2 3
-    4 5 6
-    7 8 9
-    after rotating clockwise 90 degree
-    7 4 1
-    8 5 2
-    9 6 3
-     */
-    static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList, Operation rotateClockWise) {
-        //converting two-dimensional list to two-dimensional array
-        Integer[][] arr2d = inputList.stream()
-                .map(l -> l.toArray(Integer[]::new))
-                .toArray(Integer[][]::new);
-
-        Integer[][] resultArr2d = rotateClockWise.doOp(arr2d);
-
-        //convert two-dimensional array to two-dimensional list and return
-        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
-
-    }
-
-    /*
-    1 2 3
-    4 5 6
-    7 8 9
-    After rotating anti-clockwise 90 degree
-    3 6 9
-    2 5 8
-    1 4 7
-    */
-    static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList, Operation rotateAntiClockwise) {
+    static List<List<Integer>> flipRotate(List<List<Integer>> inputList, Operation operation) {
 
 
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new))
                 .toArray(Integer[][]::new);
 
-        Integer[][] resultArr2d = rotateAntiClockwise.doOp(arr2d);
+        Integer[][] resultArr2d = operation.doOp(arr2d);
 
 
         //convert two-dimensional array to two-dimensional list and return
