@@ -1,4 +1,4 @@
-package com.abc;
+package com.graph;
 
 //Java program to print DFS traversal from a given graph
 
