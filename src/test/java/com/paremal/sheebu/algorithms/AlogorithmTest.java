@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static com.paremal.sheebu.algorithms.FlipRotate.fill2dList;
+
 public class AlogorithmTest {
 
 
@@ -311,6 +313,62 @@ public class AlogorithmTest {
             }
             return resultArr2d;
         } );
+        OperationList clockwiseNew = twoD -> {
+            int size = twoD.size();
+            int indexSize = size - 1;
+            List<List<Integer>> result2dList = new ArrayList<>();
+            fill2dList(result2dList, size);
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++)
+                    result2dList.get(j).set(indexSize - i, twoD.get(i).get(j));
+            }
+            return result2dList;
+        };
+
+        OperationList antClockwiseNew = twoD -> {
+            int size = twoD.size();
+            int indexSize = size - 1;
+            List<List<Integer>> result2dList = new ArrayList<>();
+            fill2dList(result2dList, size);
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++) {
+                    result2dList.get(indexSize - j).set(i, twoD.get(i).get(j));
+
+
+                }
+            }
+            return result2dList;
+        };
+        OperationList flipHorzontalnew = twoD -> {
+            int size = twoD.size();
+            int indexSize = size - 1;
+            List<List<Integer>> result2dList = new ArrayList<>();
+            fill2dList(result2dList, size);
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++)
+                    result2dList.get(i).set(indexSize - j, twoD.get(i).get(j));
+            }
+            return result2dList;
+        };
+        OperationList flipVerticalNew = twoD -> {
+            int size = twoD.size();
+            int indexSize = size - 1;
+            List<List<Integer>> result2dList = new ArrayList<>();
+            fill2dList(result2dList, size);
+            //iterate values for rows
+            for (int i = 0; i < size; i++) {
+                //iterate values for columns
+                for (int j = 0; j < size; j++)
+                    result2dList.get(indexSize - i).set(j, twoD.get(i).get(j));
+            }
+            return result2dList;
+        };
 
         /*
         1 2 3
@@ -333,6 +391,9 @@ public class AlogorithmTest {
 
         List<List<Integer>> actual= FlipRotate.flipRotate(inputLList,cloakWise);
         Assertions.assertEquals(expected,actual);
+        List<List<Integer>> actual1= clockwiseNew.doOp(inputLList);
+        Assertions.assertEquals(expected,actual1);
+
 
         /*
         1 2 3
@@ -351,6 +412,9 @@ public class AlogorithmTest {
         List<List<Integer>> actualAntiClwise= FlipRotate.flipRotate(inputLList,antiCloakWise);
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise);
 
+        List<List<Integer>> actualAntiClwise1= antClockwiseNew.doOp(inputLList);
+        Assertions.assertEquals(expectedAntiCwise,actualAntiClwise1);
+
         /*
         1 2 3
         4 5 6
@@ -367,6 +431,9 @@ public class AlogorithmTest {
         List<List<Integer>> actualHrzdFlip= FlipRotate.flipRotate(inputLList,flipHorizontal);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip);
 
+        List<List<Integer>> actualHrzdFlip1= flipHorzontalnew.doOp(inputLList);
+        Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip1);
+
         /*
         1 2 3
         4 5 6
@@ -380,8 +447,12 @@ public class AlogorithmTest {
         expectedVerticalFlip.add(Arrays.asList(7,8,9));
         expectedVerticalFlip.add(Arrays.asList(4,5,6));
         expectedVerticalFlip.add(Arrays.asList(1,2,3));
+
         List<List<Integer>> actualVerticalFlip= FlipRotate.flipRotate(inputLList,flipVertical);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
+
+        List<List<Integer>> actualVerticalFlip1= flipVerticalNew.doOp(inputLList);
+        Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip1);
     }
     @Test
     public void combinedSortedListTest(){
