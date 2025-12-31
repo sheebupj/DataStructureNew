@@ -390,7 +390,10 @@ public class AlogorithmTest {
         expected.add(Arrays.asList(9,6,3));
 
         List<List<Integer>> actual= FlipRotate.flipRotate(inputLList,cloakWise);
+        List<List<Integer>> actual_= FlipRotate.rotateClockWise(inputLList);
         Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected,actual_);
+
         List<List<Integer>> actual1= clockwiseNew.doOp(inputLList);
         Assertions.assertEquals(expected,actual1);
 
@@ -410,7 +413,11 @@ public class AlogorithmTest {
         expectedAntiCwise.add(Arrays.asList(1,4,7));
 
         List<List<Integer>> actualAntiClwise= FlipRotate.flipRotate(inputLList,antiCloakWise);
+        List<List<Integer>> actualAntiClwise_= FlipRotate.rotateAntiClockWise(inputLList);
+
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise);
+        Assertions.assertEquals(expectedAntiCwise,actualAntiClwise_);
+
 
         List<List<Integer>> actualAntiClwise1= antClockwiseNew.doOp(inputLList);
         Assertions.assertEquals(expectedAntiCwise,actualAntiClwise1);
@@ -429,7 +436,9 @@ public class AlogorithmTest {
         expectedHrzdFlip.add(Arrays.asList(6,5,4));
         expectedHrzdFlip.add(Arrays.asList(9,8,7));
         List<List<Integer>> actualHrzdFlip= FlipRotate.flipRotate(inputLList,flipHorizontal);
+        List<List<Integer>> actualHrzdFlip_= FlipRotate.horizondalFlip(inputLList);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip);
+        Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip_);
 
         List<List<Integer>> actualHrzdFlip1= flipHorzontalnew.doOp(inputLList);
         Assertions.assertEquals(expectedHrzdFlip,actualHrzdFlip1);
@@ -449,7 +458,9 @@ public class AlogorithmTest {
         expectedVerticalFlip.add(Arrays.asList(1,2,3));
 
         List<List<Integer>> actualVerticalFlip= FlipRotate.flipRotate(inputLList,flipVertical);
+        List<List<Integer>> actualVerticalFlip_= FlipRotate.verticalFlip(inputLList);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip);
+        Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip_);
 
         List<List<Integer>> actualVerticalFlip1= flipVerticalNew.doOp(inputLList);
         Assertions.assertEquals(expectedVerticalFlip,actualVerticalFlip1);
