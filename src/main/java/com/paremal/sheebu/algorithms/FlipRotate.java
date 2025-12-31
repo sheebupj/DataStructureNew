@@ -276,7 +276,7 @@ after flipping vertical it becomes
  */
     static List<List<Integer>> verticalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
-        Integer[][] arr2d = inputList.stream().map(l-> l.stream().toArray(Integer []::new)).toArray(Integer [][]::new);
+        Integer[][] arr2d = inputList.stream().map(l-> l.toArray(Integer[]::new)).toArray(Integer [][]::new);
         Integer[][] resultArr2d = new Integer[size][size];
         int indexsize = size - 1;
         for (int i = 0; i < size; i++) {
@@ -301,7 +301,7 @@ after flipping vertical it becomes
    */
     static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
-        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
         Integer[][] resultArr2d = new Integer[size][size];
         int indexsize = size - 1;
         for (int i = 0; i < size; i++) {
@@ -325,7 +325,7 @@ after flipping vertical it becomes
   */
     static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
-        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
         Integer[][] resultArr2d = new Integer[size][size];
         int indexsize = size - 1;
         for (int i = 0; i < size; i++) {
@@ -351,7 +351,7 @@ after flipping vertical it becomes
     */
     static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
-        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
         Integer[][] resultArr2d = new Integer[size][size];
         int indexsize = size - 1;
         for (int i = 0; i < size; i++) {
