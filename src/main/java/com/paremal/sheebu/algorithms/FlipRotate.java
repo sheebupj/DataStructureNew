@@ -46,13 +46,15 @@ after flipping  vertically
 
 
 
- */
 
+/*
+functional interface for doing rotating operations and flip operations using array
+ */
 @FunctionalInterface
 interface Operation {
     Integer[][] doOp(Integer[][] doOp);
 }
-
+//functional interface of flip rotate operations without intermediate array object
 @FunctionalInterface
 interface OperationList {
     List<List<Integer>> doOp(List<List<Integer>> doOp);
@@ -62,12 +64,10 @@ public class FlipRotate {
 
     public static void main(String[] args) {
 
-        List<List<Integer>> ns = new ArrayList<>();
-        fill2dList(ns, 3);
-        //ns.get(0).add(1,4);
-        System.out.println(ns);
 
 
+
+        /* clock wise rotating  operation using 2d Array */
         Operation clockwise = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
@@ -82,7 +82,7 @@ public class FlipRotate {
             }
             return resultArr2d;
         };
-
+        /* anti-clock wise rotating  operation using 2d Array */
         Operation antClockwise = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
@@ -98,6 +98,7 @@ public class FlipRotate {
             return resultArr2d;
         };
 
+        /* flip horizontal  operation using 2d Array */
         Operation flipHorzontal = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
@@ -113,6 +114,7 @@ public class FlipRotate {
             return resultArr2d;
         };
 
+        /* flip vertical  operation using 2d Array */
         Operation flipVertical = twoD -> {
             int size = twoD.length;
             int indexSize = size - 1;
@@ -124,7 +126,7 @@ public class FlipRotate {
             }
             return resultArr2d;
         };
-
+        //clock wise rotating  operation using 2d list
         OperationList clockwiseNew = twoD -> {
             int size = twoD.size();
             int indexSize = size - 1;
@@ -138,7 +140,7 @@ public class FlipRotate {
             }
             return result2dList;
         };
-
+        // anti-clock wise rotating  operation using 2d list
         OperationList antClockwiseNew = twoD -> {
             int size = twoD.size();
             int indexSize = size - 1;
@@ -149,13 +151,14 @@ public class FlipRotate {
                 //iterate values for columns
                 for (int j = 0; j < size; j++) {
                     result2dList.get(indexSize - j).set(i, twoD.get(i).get(j));
-
-
                 }
             }
             return result2dList;
         };
-        OperationList flipHorzontalnew = twoD -> {
+
+
+        /*  flip horizontal operation using 2d list*/
+            OperationList flipHorzontalnew = twoD -> {
             int size = twoD.size();
             int indexSize = size - 1;
             List<List<Integer>> result2dList = new ArrayList<>();
@@ -168,6 +171,8 @@ public class FlipRotate {
             }
             return result2dList;
         };
+
+        /*  flip vertical operation using 2d list*/
         OperationList flipVerticalNew = twoD -> {
             int size = twoD.size();
             int indexSize = size - 1;
@@ -246,22 +251,134 @@ public class FlipRotate {
         System.out.println("after flipping vertical new ");
         display(rlist7e);
 
+
+        List<List<Integer>> rlist7f =rotateClockWise(rlist7e);
+        System.out.println("after rotating clockwise using intermediate array ");
+        display(rlist7f);
+        List<List<Integer>> rlist7g = rotateAntiClockWise(rlist7f);
+        System.out.println("after rotating Anti-clockwise using intermediate array ");
+        display(rlist7g);
+        List<List<Integer>> rlist7h = horizondalFlip(rlist7g);
+        System.out.println("after flipping horizontal using intermediate array ");
+        display(rlist7h);
+        List<List<Integer>> rlist7i = verticalFlip(rlist7h);
+        System.out.println("after flipping vertical using intermediate array  ");
+        display(rlist7i);
+    }
+    /*
+1 2 3
+4 5 6
+7 8 9
+after flipping vertical it becomes
+7 8 9
+4 5 6
+1 2 3
+ */
+    static List<List<Integer>> verticalFlip(List<List<Integer>> inputList) {
+        int size = inputList.size();
+        Integer[][] arr2d = inputList.stream().map(l-> l.stream().toArray(Integer []::new)).toArray(Integer [][]::new);
+        Integer[][] resultArr2d = new Integer[size][size];
+        int indexsize = size - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                resultArr2d[indexsize - i][j] = arr2d[i][j];
+            }
+        }
+
+        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
+
     }
 
 
+    /*
+  1 2 3
+  4 5 6
+  7 8 9
+  after flipping horizontal
+  3 2 1
+  6 5 4
+  9 8 7
+   */
+    static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList) {
+        int size = inputList.size();
+        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] resultArr2d = new Integer[size][size];
+        int indexsize = size - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                resultArr2d[i][indexsize - j] = arr2d[i][j];
+            }
+        }
+
+        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
+
+    }
+
+    /*
+   1 2 3
+   4 5 6
+   7 8 9
+   After rotating clockwise  it become
+   7 4 1
+   8 5 2
+   9 6 3
+  */
+    static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList) {
+        int size = inputList.size();
+        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] resultArr2d = new Integer[size][size];
+        int indexsize = size - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                resultArr2d[j][indexsize - i] = arr2d[i][j];
+
+            }
+        }
+
+        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
+
+    }
+
+
+    /*
+   1 2 3
+   4 5 6
+   7 8 9
+   After rotating anti-clockwise  it become
+   3 6 9
+   2 5 8
+   1 4 7
+    */
+    static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList) {
+        int size = inputList.size();
+        Integer[][] arr2d = inputList.stream().map(l -> l.stream().toArray(Integer[]::new)).toArray(Integer[][]::new);
+        Integer[][] resultArr2d = new Integer[size][size];
+        int indexsize = size - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+
+                resultArr2d[indexsize - j][i] = arr2d[i][j];
+
+            }
+        }
+
+        return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
+
+    }
+
+
+
+    /*
+        generic method that do all flip and rotating operations (rotate clockwise and anti-clockwise
+        and flipping vertical and horizontal accepting functional interface 'operation' as parameter
+     */
     static List<List<Integer>> flipRotate(List<List<Integer>> inputList, Operation operation) {
-
-
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new))
                 .toArray(Integer[][]::new);
-
         Integer[][] resultArr2d = operation.doOp(arr2d);
-
-
         //convert two-dimensional array to two-dimensional list and return
         return Arrays.stream(resultArr2d).map(Arrays::asList).collect(Collectors.toList());
-
     }
 
 
@@ -280,13 +397,15 @@ public class FlipRotate {
         display(inputList);
     }
 
+    /*
+    pre-fill two-dimensional arraylist with null
+     */
     static void fill2dList(List<List<Integer>> arList, int size) {
         for (int i = 0; i < size; i++) {
             List<Integer> list = new ArrayList<>();
             for (int j = 0; j < size; j++) list.add(null);
             arList.add(list);
         }
-
     }
 }
 
