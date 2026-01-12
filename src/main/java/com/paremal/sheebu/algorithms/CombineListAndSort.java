@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CobineListAndSort {
+public class CombineListAndSort {
     public static void main(String[] args) {
         Integer[][] twodInts = {{11, 214, -5}, {-31, 443, 24}, {42, -96}, {1, 4, 5}, {1, 3, 4}, {2, 6}};
         System.out.println(getCombinedSortedList(twodInts));
