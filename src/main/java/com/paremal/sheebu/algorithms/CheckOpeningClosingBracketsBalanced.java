@@ -79,12 +79,12 @@ public class CheckOpeningClosingBracketsBalanced {
 
 
         }
-        if (!openingValueStack.isEmpty()) return false;
+
          /*
         loop for processing string completed and all the values in openingvaluestack is processed
         then the string parenthesis are balanced
          */
-        return true;
+        return openingValueStack.isEmpty();
     }
 
 
