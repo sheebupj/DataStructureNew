@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class DigitToWord {
+public class DigitsToWords {
     public static void main(String[] args) {
 
 
