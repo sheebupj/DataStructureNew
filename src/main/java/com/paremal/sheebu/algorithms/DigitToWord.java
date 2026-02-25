@@ -53,7 +53,6 @@ public class DigitToWord {
             }
         }
         return wordDigits.toString();
-
     }
 
     static List<Integer[]> getGetSplittingPositionsIndian() {
@@ -74,7 +73,6 @@ public class DigitToWord {
         list.add(new Integer[]{6, 9});
         list.add(new Integer[]{9, 12});
         list.add(new Integer[]{12, 15});
-
         return list;
     }
 
