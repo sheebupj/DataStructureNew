@@ -19,12 +19,12 @@ public class DigitToWord {
 
     static String digitToWordIndian(Integer digit) {
         String digits = digit + "";
-        List<String> list = getSplittedDigitsIndian(reverse(digits));
-        List<String> sufixes = getSufixListIndian();
+        List<String> list = getSplitDigitsIndian(reverse(digits));
+        List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if (i == 0) wordDigits.append(" and ").append(twodigitToWord(list.get(i))).append(" ").append(sufixes.get(i));
-            else wordDigits.append(twodigitToWord(list.get(i))).append(" ").append(sufixes.get(i)).append(" ");
+            if (i == 0) wordDigits.append(" and ").append(digitToWord(list.get(i))).append(" ").append(suffixes.get(i));
+            else wordDigits.append(digitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
         }
         return wordDigits.toString();
 
@@ -40,11 +40,11 @@ public class DigitToWord {
         return list;
     }
 
-    static List<String> getSplittedDigitsIndian(String digits) {
-        List<Integer[]> splitPositios = getGetSplittingPositionsIndian();
+    static List<String> getSplitDigitsIndian(String digits) {
+        List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
         int len = digits.length(), endIndex = 0;
         List<String> list = new ArrayList<>();
-        for (Integer[] positions : splitPositios) {
+        for (Integer[] positions : splitPositions) {
             endIndex = positions[1];
             if (positions[0] < len) {
                 if (endIndex >= len) endIndex = len;
@@ -64,7 +64,7 @@ public class DigitToWord {
 
     }
 
-    static String twodigitToWord(String digit) {
+    static String digitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
         String word = "";
         String temp = "";
@@ -119,7 +119,7 @@ public class DigitToWord {
         return map;
     }
 
-    static List<String> getSufixListIndian() {
+    static List<String> getSuffixesListIndian() {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("hundred");
