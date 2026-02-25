@@ -137,7 +137,6 @@ public class DigitToWord {
 
     static String threeDigitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
-        String word = "";
         String twoDigits = digit.substring(0,2);
         String hundredPosition = digit.substring( 2);
         return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred and " + twoDigitToWord(twoDigits);
