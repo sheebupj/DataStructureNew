@@ -11,7 +11,7 @@ public class DigitToWord {
     public static void main(String[] args) {
 
 
-        System.out.println(digitToWordIndian(123456789));
+        System.out.println(digitToWordIndian(1234567890));
         System.out.println(digitToWordIndian(77777777));
         System.out.println(digitToWordIndian(7777777));
         System.out.println(digitToWordMillionBioinformatic(123456789L));
@@ -24,6 +24,7 @@ public class DigitToWord {
 
     static String digitToWordIndian(Integer digit) {
         String digits = digit + "";
+        if(digits.length() >9) return "maximum allowed digits is 9";
         List<String> list = getSplitDigitsIndian(reverse(digits));
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
