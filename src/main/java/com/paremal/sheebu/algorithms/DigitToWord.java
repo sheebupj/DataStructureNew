@@ -42,10 +42,10 @@ public class DigitToWord {
 
     static List<String> getSplitDigitsIndian(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
-        int len = digits.length(), endIndex = 0;
+        int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
-            endIndex = positions[1];
+            int endIndex = positions[1];
             if (positions[0] < len) {
                 if (endIndex >= len) endIndex = len;
                 list.add(digits.substring(positions[0], endIndex));
@@ -56,7 +56,7 @@ public class DigitToWord {
 
     static String reverse(String s) {
         int len = s.length() - 1;
-        return IntStream.iterate(len, i -> i >= 0, i -> i = i - 1)
+        return IntStream.iterate(len, i -> i >= 0, i -> i - 1)
                 .boxed()
                 .map(s::charAt)
                 .map(String::valueOf)
@@ -67,9 +67,8 @@ public class DigitToWord {
     static String digitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
         String word = "";
-        String temp = "";
         for (int i = 0; i < digit.length(); i++) {
-            temp = digit.charAt(i) + "";
+            String temp = digit.charAt(i) + "";
             if (i == 1 && temp.equals("1")) {
                 int n = 10 + Integer.parseInt(digit.substring(0, 1));
                 word = map.get(n);
