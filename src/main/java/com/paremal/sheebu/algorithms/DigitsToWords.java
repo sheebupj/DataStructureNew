@@ -9,17 +9,12 @@ import java.util.stream.IntStream;
 
 public class DigitsToWords {
     public static void main(String[] args) {
-
-
         System.out.println(digitToWordIndian(1234567890));
         System.out.println(digitToWordIndian(77777777));
         System.out.println(digitToWordIndian(7777777));
-        System.out.println(digitToWordMillionBioinformatic(123456789L));
-        System.out.println(digitToWordMillionBioinformatic(12345678901234500L));
-        System.out.println(digitToWordMillionBioinformatic(543210123456789L));
-
-
-
+        System.out.println(digitToWordMillionBillionFormat(123456789L));
+        System.out.println(digitToWordMillionBillionFormat(12345678901234500L));
+        System.out.println(digitToWordMillionBillionFormat(543210123456789L));
     }
 
     static String digitToWordIndian(Integer digit) {
@@ -36,10 +31,10 @@ public class DigitsToWords {
         return wordDigits.toString();
 
     }
-    static String digitToWordMillionBioinformatic(Long digit) {
+    static String digitToWordMillionBillionFormat(Long digit) {
         String digits = digit + "";
         if (digits.length()>15) return "max digits allowed is 15 current input is "+digits.length();
-        List<String> list = getSplitDigitsMillionBioinformatic(reverse(digits));
+        List<String> list = getSplitDigitsMillionBillionFormat(reverse(digits));
         List<String> suffixes = getSuffixesListBioinformatic();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
@@ -65,7 +60,7 @@ public class DigitsToWords {
         return list;
     }
 
-    static List<Integer[]> getGetSplittingPositionsMillionBioinformatic() {
+    static List<Integer[]> getGetSplittingPositionsMillionBillionFormat() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
         list.add(new Integer[]{2, 3});
@@ -89,8 +84,8 @@ public class DigitsToWords {
         }
         return list;
     }
-    static List<String> getSplitDigitsMillionBioinformatic(String digits) {
-        List<Integer[]> splitPositions = getGetSplittingPositionsMillionBioinformatic();
+    static List<String> getSplitDigitsMillionBillionFormat(String digits) {
+        List<Integer[]> splitPositions = getGetSplittingPositionsMillionBillionFormat();
         int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
