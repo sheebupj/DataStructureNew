@@ -35,7 +35,7 @@ public class DigitsToWords {
         String digits = digit + "";
         if (digits.length()>15) return "max digits allowed is 15 current input is "+digits.length();
         List<String> list = getSplitDigitsMillionBillionFormat(reverse(digits));
-        List<String> suffixes = getSuffixesListBioinformatic();
+        List<String> suffixes = getSuffixesListMillionBillionFormat();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
             if (i == 0)
@@ -185,7 +185,7 @@ public class DigitsToWords {
         return list;
     }
 
-    static List<String> getSuffixesListBioinformatic() {
+    static List<String> getSuffixesListMillionBillionFormat() {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("hundred");
