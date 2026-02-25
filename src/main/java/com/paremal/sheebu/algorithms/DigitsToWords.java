@@ -10,66 +10,54 @@ import java.util.stream.IntStream;
 public class DigitsToWords {
     public static void main(String[] args) {
         System.out.println(digitToWordIndian(1234567890));
-        System.out.println(digitToWordIndian(77777777));
+        System.out.println(digitToWordIndian(100000000));
         System.out.println(digitToWordIndian(7777777));
         System.out.println(digitToWordMillionBillionFormat(123456789L));
-        System.out.println(digitToWordMillionBillionFormat(12345678901234500L));
+        System.out.println(digitToWordMillionBillionFormat(100000000000000001L));
         System.out.println(digitToWordMillionBillionFormat(543210123456789L));
     }
 
     static String digitToWordIndian(Integer digit) {
         String digits = digit + "";
-        if(digits.length() >9) return "maximum allowed digits is 9 and current input is "+digits.length();
+        if (digits.length() > 9) return "maximum allowed digits is 9 and current input is " + digits.length();
         List<String> list = getSplitDigitsIndian(reverse(digits));
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if (i == 0)
-                wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-            else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
+            if(Integer.parseInt(list.get(i))>0) {
+                if (i == 0)
+                    wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
+                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            }
         }
         return wordDigits.toString();
 
     }
+
     static String digitToWordMillionBillionFormat(Long digit) {
         String digits = digit + "";
-        if (digits.length()>15) return "max digits allowed is 15 current input is "+digits.length();
+        if (digits.length() > 18)
+            return "max digits allowed is 18 and  current input contains " + digits.length() + " digits";
         List<String> list = getSplitDigitsMillionBillionFormat(reverse(digits));
         List<String> suffixes = getSuffixesListMillionBillionFormat();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if (i == 0)
-                wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-            else if (i==1) wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
-            else {
-                if(list.get(i).length()>2)
-                wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
-                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
+            if (Integer.parseInt(list.get(i)) > 0) {
+                if (i == 0)
+                    wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
+                else if (i == 1)
+                    wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                else {
+                    if (list.get(i).length() > 2)
+                        wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                    else
+                        wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                }
             }
         }
         return wordDigits.toString();
     }
 
-    static List<Integer[]> getGetSplittingPositionsIndian() {
-        List<Integer[]> list = new ArrayList<>();
-        list.add(new Integer[]{0, 2});
-        list.add(new Integer[]{2, 3});
-        list.add(new Integer[]{3, 5});
-        list.add(new Integer[]{5, 7});
-        list.add(new Integer[]{7, 9});
-        return list;
-    }
-
-    static List<Integer[]> getGetSplittingPositionsMillionBillionFormat() {
-        List<Integer[]> list = new ArrayList<>();
-        list.add(new Integer[]{0, 2});
-        list.add(new Integer[]{2, 3});
-        list.add(new Integer[]{3, 6});
-        list.add(new Integer[]{6, 9});
-        list.add(new Integer[]{9, 12});
-        list.add(new Integer[]{12, 15});
-        return list;
-    }
 
     static List<String> getSplitDigitsIndian(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
@@ -84,6 +72,7 @@ public class DigitsToWords {
         }
         return list;
     }
+
     static List<String> getSplitDigitsMillionBillionFormat(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsMillionBillionFormat();
         int len = digits.length();
@@ -136,9 +125,9 @@ public class DigitsToWords {
 
     static String threeDigitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
-        String twoDigits = digit.substring(0,2);
-        String hundredPosition = digit.substring( 2);
-        return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred and " + twoDigitToWord(twoDigits);
+        String twoDigits = digit.substring(0, 2);
+        String hundredPosition = digit.substring(2);
+        return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred" + twoDigitToWord(twoDigits);
     }
 
     static Map<Integer, String> getFirstDigitMap() {
@@ -175,6 +164,29 @@ public class DigitsToWords {
         return map;
     }
 
+    static List<Integer[]> getGetSplittingPositionsIndian() {
+        List<Integer[]> list = new ArrayList<>();
+        list.add(new Integer[]{0, 2});
+        list.add(new Integer[]{2, 3});
+        list.add(new Integer[]{3, 5});
+        list.add(new Integer[]{5, 7});
+        list.add(new Integer[]{7, 9});
+        return list;
+    }
+
+    static List<Integer[]> getGetSplittingPositionsMillionBillionFormat() {
+        List<Integer[]> list = new ArrayList<>();
+        list.add(new Integer[]{0, 2});
+        list.add(new Integer[]{2, 3});
+        list.add(new Integer[]{3, 6});
+        list.add(new Integer[]{6, 9});
+        list.add(new Integer[]{9, 12});
+        list.add(new Integer[]{12, 15});
+        list.add(new Integer[]{15, 18});
+        return list;
+    }
+
+
     static List<String> getSuffixesListIndian() {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -193,6 +205,7 @@ public class DigitsToWords {
         list.add("million");
         list.add("billion");
         list.add("trillion");
+        list.add("quadrillion");
         return list;
     }
 
