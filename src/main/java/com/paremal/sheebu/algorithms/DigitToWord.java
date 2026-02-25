@@ -14,10 +14,8 @@ public class DigitToWord {
         System.out.println(digitToWordIndian(123456789));
         System.out.println(digitToWordIndian(77777777));
         System.out.println(digitToWordIndian(7777777));
-        System.out.println("321".substring(0,2));
-        System.out.println("321".substring(2));
-        System.out.println(digitToWordInternational(123456789L));
-        System.out.println(digitToWordInternational(123456789012345L));
+        System.out.println(digitToWordMillionBioinformatic(123456789L));
+        System.out.println(digitToWordMillionBioinformatic(123456789012345L));
 
 
 
@@ -36,10 +34,10 @@ public class DigitToWord {
         return wordDigits.toString();
 
     }
-    static String digitToWordInternational(Long digit) {
+    static String digitToWordMillionBioinformatic(Long digit) {
         String digits = digit + "";
         if (digits.length()>15) return "max digits allowed is 15 ";
-        List<String> list = getSplitDigitsInternational(reverse(digits));
+        List<String> list = getSplitDigitsMillionBioinformatic(reverse(digits));
         List<String> suffixes = getSuffixesListInternational();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
@@ -66,7 +64,7 @@ public class DigitToWord {
         return list;
     }
 
-    static List<Integer[]> getGetSplittingPositionsInternational() {
+    static List<Integer[]> getGetSplittingPositionsMillionBioinformatic() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
         list.add(new Integer[]{2, 3});
@@ -91,8 +89,8 @@ public class DigitToWord {
         }
         return list;
     }
-    static List<String> getSplitDigitsInternational(String digits) {
-        List<Integer[]> splitPositions = getGetSplittingPositionsInternational();
+    static List<String> getSplitDigitsMillionBioinformatic(String digits) {
+        List<Integer[]> splitPositions = getGetSplittingPositionsMillionBioinformatic();
         int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
@@ -105,6 +103,12 @@ public class DigitToWord {
         return list;
     }
 
+    /**
+     * Reverses the given string.
+     *
+     * @param s The string to reverse.
+     * @return The reversed string.
+     */
     static String reverse(String s) {
         int len = s.length() - 1;
         return IntStream.iterate(len, i -> i >= 0, i -> i - 1)
