@@ -1,0 +1,133 @@
+package com.paremal.sheebu.algorithms;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class DigitToWord {
+    public static void main(String[] args) {
+
+
+        System.out.println(digitToWordIndian(123456789));
+        System.out.println(digitToWordIndian(77777777));
+        System.out.println(digitToWordIndian(7777777));
+
+    }
+
+    static String digitToWordIndian(Integer digit) {
+        String digits = digit + "";
+        List<String> list = getSplittedDigitsIndian(reverse(digits));
+        List<String> sufixes = getSufixListIndian();
+        StringBuilder wordDigits = new StringBuilder();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (i == 0) wordDigits.append(" and ").append(twodigitToWord(list.get(i))).append(" ").append(sufixes.get(i));
+            else wordDigits.append(twodigitToWord(list.get(i))).append(" ").append(sufixes.get(i)).append(" ");
+        }
+        return wordDigits.toString();
+
+    }
+
+    static List<Integer[]> getGetSplittingPositionsIndian() {
+        List<Integer[]> list = new ArrayList<>();
+        list.add(new Integer[]{0, 2});
+        list.add(new Integer[]{2, 3});
+        list.add(new Integer[]{3, 5});
+        list.add(new Integer[]{5, 7});
+        list.add(new Integer[]{7, 9});
+        return list;
+    }
+
+    static List<String> getSplittedDigitsIndian(String digits) {
+        List<Integer[]> splitPositios = getGetSplittingPositionsIndian();
+        int len = digits.length(), endIndex = 0;
+        List<String> list = new ArrayList<>();
+        for (Integer[] positions : splitPositios) {
+            endIndex = positions[1];
+            if (positions[0] < len) {
+                if (endIndex >= len) endIndex = len;
+                list.add(digits.substring(positions[0], endIndex));
+            }
+        }
+        return list;
+    }
+
+    static String reverse(String s) {
+        int len = s.length() - 1;
+        return IntStream.iterate(len, i -> i >= 0, i -> i = i - 1)
+                .boxed()
+                .map(s::charAt)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+    }
+
+    static String twodigitToWord(String digit) {
+        Map<Integer, String> map = getFirstDigitMap();
+        String word = "";
+        String temp = "";
+        for (int i = 0; i < digit.length(); i++) {
+            temp = digit.charAt(i) + "";
+            if (i == 1 && temp.equals("1")) {
+                int n = 10 + Integer.parseInt(digit.substring(0, 1));
+                word = map.get(n);
+            } else if (i == 1) {
+                word = map.getOrDefault(Integer.parseInt(temp) * 10, "") + " " + word;
+            } else {
+                String temp2 = map.get(Integer.valueOf(temp));
+                if (!temp2.isEmpty())
+                    word = temp2;
+            }
+        }
+        return word;
+
+    }
+
+    static Map<Integer, String> getFirstDigitMap() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(0, "");
+        map.put(1, "one");
+        map.put(2, "two");
+        map.put(3, "three");
+        map.put(4, "four");
+        map.put(5, "five");
+        map.put(6, "six");
+        map.put(7, "seven");
+        map.put(8, "eight");
+        map.put(9, "nine");
+        map.put(10, "ten");
+        map.put(11, "eleven");
+        map.put(12, "twelve");
+        map.put(13, "thirteen");
+        map.put(14, "fourteen");
+        map.put(15, "fifteen");
+        map.put(16, "sixteen");
+        map.put(17, "seventeen");
+        map.put(18, "eighteen");
+        map.put(19, "nineteen");
+        map.put(20, "twenty");
+        map.put(30, "thirty");
+        map.put(40, "forty");
+        map.put(50, "fifty");
+        map.put(60, "sixty");
+        map.put(70, "seventy");
+        map.put(80, "eighty");
+        map.put(90, "ninety");
+
+        return map;
+    }
+
+    static List<String> getSufixListIndian() {
+        List<String> list = new ArrayList<>();
+        list.add("");
+        list.add("hundred");
+        list.add("thousand");
+        list.add("lakh");
+        list.add("crore");
+        return list;
+    }
+
+
+}
