@@ -16,6 +16,7 @@ public class DigitToWord {
         System.out.println(digitToWordIndian(7777777));
         System.out.println(digitToWordMillionBioinformatic(123456789L));
         System.out.println(digitToWordMillionBioinformatic(123456789012345L));
+        System.out.println(digitToWordMillionBioinformatic(543210123456789L));
 
 
 
@@ -29,7 +30,7 @@ public class DigitToWord {
         for (int i = list.size() - 1; i >= 0; i--) {
             if (i == 0)
                 wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-            else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
         }
         return wordDigits.toString();
 
@@ -38,16 +39,16 @@ public class DigitToWord {
         String digits = digit + "";
         if (digits.length()>15) return "max digits allowed is 15 ";
         List<String> list = getSplitDigitsMillionBioinformatic(reverse(digits));
-        List<String> suffixes = getSuffixesListInternational();
+        List<String> suffixes = getSuffixesListBioinformatic();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
             if (i == 0)
                 wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-            else if (i==1) wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            else if (i==1) wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
             else {
                 if(list.get(i).length()>2)
-                wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
-                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
+                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(", ");
             }
         }
         return wordDigits.toString();
@@ -190,7 +191,7 @@ public class DigitToWord {
         return list;
     }
 
-    static List<String> getSuffixesListInternational() {
+    static List<String> getSuffixesListBioinformatic() {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("hundred");
