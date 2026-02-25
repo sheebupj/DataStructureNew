@@ -14,7 +14,7 @@ public class DigitsToWords {
         System.out.println(digitToWordIndian(7777777));
         System.out.println(digitToWordMillionBillionFormat(123456789L));
         System.out.println(digitToWordMillionBillionFormat(100000000000000001L));
-        System.out.println(digitToWordMillionBillionFormat(543210123456789L));
+        System.out.println(digitToWordMillionBillionFormat(543210123456789123L));
     }
 
     static String digitToWordIndian(Integer digit) {
@@ -127,7 +127,7 @@ public class DigitsToWords {
         Map<Integer, String> map = getFirstDigitMap();
         String twoDigits = digit.substring(0, 2);
         String hundredPosition = digit.substring(2);
-        return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred" + twoDigitToWord(twoDigits);
+        return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred and " + twoDigitToWord(twoDigits);
     }
 
     static Map<Integer, String> getFirstDigitMap() {
