@@ -15,7 +15,7 @@ public class DigitToWord {
         System.out.println(digitToWordIndian(77777777));
         System.out.println(digitToWordIndian(7777777));
         System.out.println(digitToWordMillionBioinformatic(123456789L));
-        System.out.println(digitToWordMillionBioinformatic(123456789012345L));
+        System.out.println(digitToWordMillionBioinformatic(12345678901234500L));
         System.out.println(digitToWordMillionBioinformatic(543210123456789L));
 
 
@@ -24,7 +24,7 @@ public class DigitToWord {
 
     static String digitToWordIndian(Integer digit) {
         String digits = digit + "";
-        if(digits.length() >9) return "maximum allowed digits is 9";
+        if(digits.length() >9) return "maximum allowed digits is 9 and current input is "+digits.length();
         List<String> list = getSplitDigitsIndian(reverse(digits));
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
@@ -38,7 +38,7 @@ public class DigitToWord {
     }
     static String digitToWordMillionBioinformatic(Long digit) {
         String digits = digit + "";
-        if (digits.length()>15) return "max digits allowed is 15 ";
+        if (digits.length()>15) return "max digits allowed is 15 current input is "+digits.length();
         List<String> list = getSplitDigitsMillionBioinformatic(reverse(digits));
         List<String> suffixes = getSuffixesListBioinformatic();
         StringBuilder wordDigits = new StringBuilder();
