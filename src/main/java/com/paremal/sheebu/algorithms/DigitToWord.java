@@ -14,6 +14,12 @@ public class DigitToWord {
         System.out.println(digitToWordIndian(123456789));
         System.out.println(digitToWordIndian(77777777));
         System.out.println(digitToWordIndian(7777777));
+        System.out.println("321".substring(0,2));
+        System.out.println("321".substring(2));
+        System.out.println(digitToWordInternational(123456789L));
+        System.out.println(digitToWordInternational(123456789012345L));
+
+
 
     }
 
@@ -23,8 +29,28 @@ public class DigitToWord {
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if (i == 0) wordDigits.append(" and ").append(digitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-            else wordDigits.append(digitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            if (i == 0)
+                wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
+            else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+        }
+        return wordDigits.toString();
+
+    }
+    static String digitToWordInternational(Long digit) {
+        String digits = digit + "";
+        if (digits.length()>15) return "max digits allowed is 15 ";
+        List<String> list = getSplitDigitsInternational(reverse(digits));
+        List<String> suffixes = getSuffixesListInternational();
+        StringBuilder wordDigits = new StringBuilder();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (i == 0)
+                wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
+            else if (i==1) wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            else {
+                if(list.get(i).length()>2)
+                wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+            }
         }
         return wordDigits.toString();
 
@@ -40,8 +66,33 @@ public class DigitToWord {
         return list;
     }
 
+    static List<Integer[]> getGetSplittingPositionsInternational() {
+        List<Integer[]> list = new ArrayList<>();
+        list.add(new Integer[]{0, 2});
+        list.add(new Integer[]{2, 3});
+        list.add(new Integer[]{3, 6});
+        list.add(new Integer[]{6, 9});
+        list.add(new Integer[]{9, 12});
+        list.add(new Integer[]{12, 15});
+
+        return list;
+    }
+
     static List<String> getSplitDigitsIndian(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
+        int len = digits.length();
+        List<String> list = new ArrayList<>();
+        for (Integer[] positions : splitPositions) {
+            int endIndex = positions[1];
+            if (positions[0] < len) {
+                if (endIndex >= len) endIndex = len;
+                list.add(digits.substring(positions[0], endIndex));
+            }
+        }
+        return list;
+    }
+    static List<String> getSplitDigitsInternational(String digits) {
+        List<Integer[]> splitPositions = getGetSplittingPositionsInternational();
         int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
@@ -64,7 +115,7 @@ public class DigitToWord {
 
     }
 
-    static String digitToWord(String digit) {
+    static String twoDigitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
         String word = "";
         for (int i = 0; i < digit.length(); i++) {
@@ -82,6 +133,14 @@ public class DigitToWord {
         }
         return word;
 
+    }
+
+    static String threeDigitToWord(String digit) {
+        Map<Integer, String> map = getFirstDigitMap();
+        String word = "";
+        String twoDigits = digit.substring(0,2);
+        String hundredPosition = digit.substring( 2);
+        return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred and " + twoDigitToWord(twoDigits);
     }
 
     static Map<Integer, String> getFirstDigitMap() {
@@ -125,6 +184,17 @@ public class DigitToWord {
         list.add("thousand");
         list.add("lakh");
         list.add("crore");
+        return list;
+    }
+
+    static List<String> getSuffixesListInternational() {
+        List<String> list = new ArrayList<>();
+        list.add("");
+        list.add("hundred");
+        list.add("thousand");
+        list.add("million");
+        list.add("billion");
+        list.add("trillion");
         return list;
     }
 
