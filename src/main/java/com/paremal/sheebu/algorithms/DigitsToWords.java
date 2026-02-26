@@ -9,16 +9,16 @@ import java.util.stream.IntStream;
 
 public class DigitsToWords {
     public static void main(String[] args) {
-        System.out.println(digitToWordIndian(1234567890));
-        System.out.println(digitToWordIndian(100000000));
-        System.out.println(digitToWordIndian(7777777));
-        System.out.println(digitToWordMillionBillionFormat(123456789L));
-        System.out.println(digitToWordMillionBillionFormat(100000000000000001L));
-        System.out.println(digitToWordMillionBillionFormat(543210123456789123L));
+        System.out.println(digitToWordIndian("1234567890"));
+        System.out.println(digitToWordIndian("100000000"));
+        System.out.println(digitToWordIndian("7777777"));
+        System.out.println(digitToWordMillionBillionFormat("123456789"));
+        System.out.println(digitToWordMillionBillionFormat("100000000000000001"));
+        System.out.println(digitToWordMillionBillionFormat("1543210123456789123"));
+        System.out.println(digitToWordMillionBillionFormat("11000"));
     }
-
-    static String digitToWordIndian(Integer digit) {
-        String digits = digit + "";
+    public  static String digitToWordIndian(String digits) {
+        //String digits = digit + "";
         if (digits.length() > 9) return "maximum allowed digits is 9 and current input is " + digits.length();
         List<String> list = getSplitDigitsIndian(reverse(digits));
         List<String> suffixes = getSuffixesListIndian();
@@ -34,10 +34,10 @@ public class DigitsToWords {
 
     }
 
-    static String digitToWordMillionBillionFormat(Long digit) {
-        String digits = digit + "";
-        if (digits.length() > 18)
-            return "max digits allowed is 18 and  current input contains " + digits.length() + " digits";
+   public static String digitToWordMillionBillionFormat(String digits) {
+        //String digits = digit + "";
+        if (digits.length() > 21)
+            return "max digits allowed is 21 and  current input contains " + digits.length() + " digits";
         List<String> list = getSplitDigitsMillionBillionFormat(reverse(digits));
         List<String> suffixes = getSuffixesListMillionBillionFormat();
         StringBuilder wordDigits = new StringBuilder();
@@ -183,6 +183,7 @@ public class DigitsToWords {
         list.add(new Integer[]{9, 12});
         list.add(new Integer[]{12, 15});
         list.add(new Integer[]{15, 18});
+        list.add(new Integer[]{18, 21});
         return list;
     }
 
@@ -206,6 +207,7 @@ public class DigitsToWords {
         list.add("billion");
         list.add("trillion");
         list.add("quadrillion");
+        list.add("quintilion");
         return list;
     }
 
