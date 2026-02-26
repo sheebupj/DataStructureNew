@@ -72,18 +72,11 @@ public class CheckOpeningClosingBracketsBalanced {
                     if (!ch.equals(Closing)) {
                         return false;
                     }
-                } else {
-                    return false;
-                }
+                } else  return false;
             }
-
-
         }
-
-         /*
-        loop for processing string completed and all the values in openingvaluestack is processed
-        then the string parenthesis are balanced
-         */
+        /* loop for processing string completed and all the values in
+        openingvaluestack is processedthen the string parenthesis are balanced  */
         return openingValueStack.isEmpty();
     }
 
