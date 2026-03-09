@@ -10,6 +10,8 @@ import java.util.stream.IntStream;
 /**
  * This class provides functionality to convert numeric digits into their word representations
  * in both Indian numbering system (lakhs and crores) and Western numbering system (millions and billions).
+ *
+ * @author Sheebu P J
  */
 public class DigitsToWords {
     /**
