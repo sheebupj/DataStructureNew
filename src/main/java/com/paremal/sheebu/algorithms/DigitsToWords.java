@@ -7,7 +7,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * This class provides functionality to convert numeric digits into their word representations
+ * in both Indian numbering system (lakhs and crores) and Western numbering system (millions and billions).
+ */
 public class DigitsToWords {
+    /**
+     * Main method to demonstrate the digit to word conversion functions.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         System.out.println(digitToWordIndian("1234567890"));
         System.out.println(digitToWordIndian("100000000"));
@@ -17,6 +26,13 @@ public class DigitsToWords {
         System.out.println(digitToWordMillionBillionFormat("1543210123456789123"));
         System.out.println(digitToWordMillionBillionFormat("11000"));
     }
+    /**
+     * Converts a string of digits to words using the Indian numbering system (lakhs and crores).
+     * Supports up to 9 digits.
+     *
+     * @param digits the string representation of the number
+     * @return the word representation of the number or an error message if input is too long
+     */
     public  static String digitToWordIndian(String digits) {
         //String digits = digit + "";
         if (digits.length() > 9) return "maximum allowed digits is 9 and current input is " + digits.length();
@@ -34,6 +50,13 @@ public class DigitsToWords {
 
     }
 
+   /**
+    * Converts a string of digits to words using the Western numbering system (millions, billions, etc.).
+    * Supports up to 21 digits.
+    *
+    * @param digits the string representation of the number
+    * @return the word representation of the number or an error message if input is too long
+    */
    public static String digitToWordMillionBillionFormat(String digits) {
         //String digits = digit + "";
         if (digits.length() > 21)
@@ -59,6 +82,12 @@ public class DigitsToWords {
     }
 
 
+    /**
+     * Splits the reversed digits into groups for Indian numbering system.
+     *
+     * @param digits the reversed string of digits
+     * @return list of digit groups
+     */
     static List<String> getSplitDigitsIndian(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
         int len = digits.length();
@@ -73,6 +102,12 @@ public class DigitsToWords {
         return list;
     }
 
+    /**
+     * Splits the reversed digits into groups for Western numbering system.
+     *
+     * @param digits the reversed string of digits
+     * @return list of digit groups
+     */
     static List<String> getSplitDigitsMillionBillionFormat(String digits) {
         List<Integer[]> splitPositions = getGetSplittingPositionsMillionBillionFormat();
         int len = digits.length();
@@ -103,6 +138,12 @@ public class DigitsToWords {
 
     }
 
+    /**
+     * Converts a two-digit string to its word representation.
+     *
+     * @param digit the two-digit string
+     * @return the word representation
+     */
     static String twoDigitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
         String word = "";
@@ -123,6 +164,12 @@ public class DigitsToWords {
 
     }
 
+    /**
+     * Converts a three-digit string to its word representation.
+     *
+     * @param digit the three-digit string
+     * @return the word representation
+     */
     static String threeDigitToWord(String digit) {
         Map<Integer, String> map = getFirstDigitMap();
         String twoDigits = digit.substring(0, 2);
@@ -130,6 +177,11 @@ public class DigitsToWords {
         return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred and " + twoDigitToWord(twoDigits);
     }
 
+    /**
+     * Returns a map of numbers to their word representations.
+     *
+     * @return map from integer to string
+     */
     static Map<Integer, String> getFirstDigitMap() {
         Map<Integer, String> map = new HashMap<>();
         map.put(0, "");
@@ -164,6 +216,11 @@ public class DigitsToWords {
         return map;
     }
 
+    /**
+     * Returns the splitting positions for Indian numbering system.
+     *
+     * @return list of integer arrays representing start and end positions
+     */
     static List<Integer[]> getGetSplittingPositionsIndian() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
@@ -174,6 +231,11 @@ public class DigitsToWords {
         return list;
     }
 
+    /**
+     * Returns the splitting positions for Western numbering system.
+     *
+     * @return list of integer arrays representing start and end positions
+     */
     static List<Integer[]> getGetSplittingPositionsMillionBillionFormat() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
@@ -188,6 +250,11 @@ public class DigitsToWords {
     }
 
 
+    /**
+     * Returns the list of suffixes for Indian numbering system.
+     *
+     * @return list of suffix strings
+     */
     static List<String> getSuffixesListIndian() {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -198,6 +265,11 @@ public class DigitsToWords {
         return list;
     }
 
+    /**
+     * Returns the list of suffixes for Western numbering system.
+     *
+     * @return list of suffix strings
+     */
     static List<String> getSuffixesListMillionBillionFormat() {
         List<String> list = new ArrayList<>();
         list.add("");
