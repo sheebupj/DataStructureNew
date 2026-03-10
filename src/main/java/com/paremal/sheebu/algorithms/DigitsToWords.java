@@ -28,6 +28,12 @@ public class DigitsToWords {
         System.out.println(
                 digitToWordMillionBillionFormat("1543210123456789123"));
         System.out.println(digitToWordMillionBillionFormat("11000"));
+        System.out.println(digitToWordMillionBillionFormat("1000"));
+        System.out.println(digitToWordMillionBillionFormat("1000000"));
+        System.out.println(digitToWordMillionBillionFormat("1000000000"));
+        System.out.println(digitToWordMillionBillionFormat("1000000000000"));
+        System.out.println(digitToWordMillionBillionFormat("1000000000000000"));
+        System.out.println(digitToWordMillionBillionFormat("1000000000000000000"));
     }
     /**
      * Converts a string of digits to words using the Indian numbering system (lakhs and crores).
@@ -92,7 +98,7 @@ public class DigitsToWords {
      * @return list of digit groups
      */
     static List<String> getSplitDigitsIndian(String digits) {
-        List<Integer[]> splitPositions = getGetSplittingPositionsIndian();
+        List<Integer[]> splitPositions = getSplittingPositionsIndian();
         int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
@@ -111,8 +117,8 @@ public class DigitsToWords {
      * @param digits the reversed string of digits
      * @return list of digit groups
      */
-    static List<String> getSplitDigitsMillionBillionFormat(String digits) {
-        List<Integer[]> splitPositions = getGetSplittingPositionsMillionBillionFormat();
+    static List<String>  getSplitDigitsMillionBillionFormat(String digits) {
+        List<Integer[]> splitPositions = getSplittingPositionsWesternFormat();
         int len = digits.length();
         List<String> list = new ArrayList<>();
         for (Integer[] positions : splitPositions) {
@@ -224,7 +230,7 @@ public class DigitsToWords {
      *
      * @return list of integer arrays representing start and end positions
      */
-    static List<Integer[]> getGetSplittingPositionsIndian() {
+    static List<Integer[]> getSplittingPositionsIndian() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
         list.add(new Integer[]{2, 3});
@@ -239,7 +245,7 @@ public class DigitsToWords {
      *
      * @return list of integer arrays representing start and end positions
      */
-    static List<Integer[]> getGetSplittingPositionsMillionBillionFormat() {
+    static List<Integer[]> getSplittingPositionsWesternFormat() {
         List<Integer[]> list = new ArrayList<>();
         list.add(new Integer[]{0, 2});
         list.add(new Integer[]{2, 3});
@@ -282,7 +288,7 @@ public class DigitsToWords {
         list.add("billion");
         list.add("trillion");
         list.add("quadrillion");
-        list.add("quintilion");
+        list.add("quintillion");
         return list;
     }
 
