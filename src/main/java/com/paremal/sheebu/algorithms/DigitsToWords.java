@@ -11,6 +11,23 @@ import java.util.stream.IntStream;
  * This class provides functionality to convert numeric digits into their word representations
  * in both Indian numbering system (lakhs and crores) and Western numbering system (millions and billions).
  *
+ * <p>Class Outline:</p>
+ * <ul>
+ * <li>main(String[] args): Main method to demonstrate the digit to word conversion functions.</li>
+ * <li>digitToWordIndian(String digits): Converts a string of digits to words using the Indian numbering system.</li>
+ * <li>digitToWordMillionBillionFormat(String digits): Converts a string of digits to words using the Western numbering system.</li>
+ * <li>getSplitDigitsIndian(String digits): Splits the reversed digits into groups for Indian numbering system.</li>
+ * <li>getSplitDigitsMillionBillionFormat(String digits): Splits the reversed digits into groups for Western numbering system.</li>
+ * <li>reverse(String s): Reverses the given string.</li>
+ * <li>twoDigitToWord(String digit): Converts a two-digit string to its word representation.</li>
+ * <li>threeDigitToWord(String digit): Converts a three-digit string to its word representation.</li>
+ * <li>getFirstDigitMap(): Returns a map of numbers to their word representations.</li>
+ * <li>getSplittingPositionsIndian(): Returns the splitting positions for Indian numbering system.</li>
+ * <li>getSplittingPositionsWesternFormat(): Returns the splitting positions for Western numbering system.</li>
+ * <li>getSuffixesListIndian(): Returns the list of suffixes for Indian numbering system.</li>
+ * <li>getSuffixesListMillionBillionFormat(): Returns the list of suffixes for Western numbering system.</li>
+ * </ul>
+ *
  * @author Sheebu P J
  */
 public class DigitsToWords {
