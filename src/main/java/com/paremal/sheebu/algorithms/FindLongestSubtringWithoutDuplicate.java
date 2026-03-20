@@ -74,7 +74,6 @@ public class FindLongestSubtringWithoutDuplicate {
                 i++;
             }
         }
-        Optional<String> opt = list.stream().reduce((a, b) -> a.length() > b.length() ? a : b);
-        return opt.orElse("");
+        return list.stream().reduce((a, b) -> a.length() > b.length() ? a : b).orElse("");
     }
 }
