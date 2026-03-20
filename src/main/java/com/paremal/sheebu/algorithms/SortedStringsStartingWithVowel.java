@@ -31,7 +31,8 @@ public class SortedStringsStartingWithVowel {
      * Processes a list of strings to filter those starting with vowels (a, e, i, o, u, case-insensitive),
      * groups them by their first letter (converted to lowercase), counts the occurrences, and sorts the map by key.
      *
-     * <p>This method uses streams to filter, collect into a map, sort entries, and collect back into a LinkedHashMap.</p>
+     * <p>This method uses streams to filter non-null and non-empty strings, then filters for vowel-starting strings,
+     * and collects into a TreeMap for automatic alphabetical sorting by key.</p>
      * <p>Time Complexity: O(n * m + k log k), where n is the number of strings, m is the average string length for regex matching, and k is the number of unique vowel-starting letters.</p>
      * <p>Space Complexity: O(k), where k is the number of unique vowel-starting letters, for the resulting map.</p>
      *
@@ -46,12 +47,11 @@ public class SortedStringsStartingWithVowel {
      * </pre>
      */
     static Map<String, Integer> orderedStringsStartingWithVowel(List<String> strings) {
-        return strings.stream().filter(s -> s.matches("(?i)^[aeiou].*"))
-                .collect(Collectors.toMap(s -> s.substring(0, 1)
-                        .toLowerCase(), s -> 1, Integer::sum))
-                .entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (me1, me2) -> me1, LinkedHashMap::new));
+        return strings.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .filter(s -> s.matches("(?i)^[aeiou].*"))
+                .collect(Collectors.groupingBy( s-> s.substring(0, 1).toLowerCase(),
+                        TreeMap::new,
+                        Collectors.summingInt(s -> 1)));
     }
 }
