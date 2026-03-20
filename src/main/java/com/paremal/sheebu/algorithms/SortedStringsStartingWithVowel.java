@@ -14,8 +14,8 @@ public class SortedStringsStartingWithVowel {
 
     static Map<String, Integer> orderedStringsStartingWithVowel(List<String> strings) {
         return strings.stream().filter(s ->
-                        s.matches("(?i)^[aeiou].*")
-                ).collect(Collectors.toMap(s -> s.substring(0, 1)
+                        s.matches("(?i)^[aeiou].*"))
+                .collect(Collectors.toMap(s -> s.substring(0, 1)
                         .toLowerCase(), s -> 1, Integer::sum))
                 .entrySet().stream()
                               .sorted(Map.Entry.comparingByKey())
