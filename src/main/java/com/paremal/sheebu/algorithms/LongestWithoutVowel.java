@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 public class LongestWithoutVowel {
     public static void main(String[] args) {
-        LongestWithoutVowel longestWithoutVowel= new LongestWithoutVowel();
-        String[] words={"ada",
+        LongestWithoutVowel longestWithoutVowel = new LongestWithoutVowel();
+        String[] words = {"ada",
                 "xyz",
                 "absolute",
                 "arithmetic1",
@@ -20,12 +20,8 @@ public class LongestWithoutVowel {
     }
 
     public String findLongestStringWithoutvowels(String[] words) {
-        String regex="[aeiouAEIOU]";
-        Pattern pattern=Pattern.compile(regex);
-        Optional<String> result=Stream.of(words).filter(w->{
-            Matcher matcher= pattern.matcher(w);
-            return !matcher.find()? true:false;
-        }).reduce((w1,w2)-> w1.length()>w2.length() ? w1:w2);
-        return result.orElse("");
+        return Stream.of(words).filter(w -> !w.matches("(?i)[aeiou].*"))
+                .reduce((w1, w2) -> w1.length() > w2.length() ? w1 : w2)
+                .orElse("");
     }
 }
