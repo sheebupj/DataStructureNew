@@ -2,59 +2,57 @@ package com.paremal.sheebu.algorithms;
 
 import java.util.*;
 
-public class FindLongestSubtringWithoutDuplicate {
+/**
+ * This class provides methods to find the longest substring without duplicate characters.
+ * It implements an algorithm that iterates through the string, maintaining a sliding window
+ * of unique characters and tracks the longest such substring found.
+ *
+ * @author Sheebu P J
+ * @version 1.0
+ * @since 2023
+ */
+public class FindLongestSubStringWithoutDuplicate {
     public static void main(String[] args) {
         String str = "12123412345612345671234567891234567890";
 
-        System.out.println(getLongestSbstrWithoutDuplicate(str));
+        System.out.println(getLongestSubStringWithoutDuplicate(str));
 
     }
 
     /**
+     * Finds the longest substring without duplicate characters in the given string.
+     * This method uses a sliding window approach with a HashMap to track character frequencies.
      *
-     * @param name
-     * @return string
-     * Given a string s, find the length of the longest substring without duplicate characters
+     * <p>Time Complexity: O(n), where n is the length of the input string, as each character is processed at most twice.</p>
+     * <p>Space Complexity: O(min(n, m)), where m is the size of the character set (e.g., 128 for ASCII).</p>
      *
+     * @param s the input string to search for the longest substring without duplicates
+     * @return the longest substring without duplicate characters; empty string if input is null or empty
+     *
+     * @example
+     * <pre>
      * Input: s = "abcabcbb"
-     * Output: 3
-     * Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
+     * Output: "abc"
+     * Explanation: The answer is "abc", with the length of 3.
+     * </pre>
      *
-     * Example 2:
-     *
+     * @example
+     * <pre>
      * Input: s = "bbbbb"
-     * Output: 1
+     * Output: "b"
      * Explanation: The answer is "b", with the length of 1.
+     * </pre>
      *
-     * Example 3:
-     *
+     * @example
+     * <pre>
      * Input: s = "pwwkew"
-     * Output: 3
+     * Output: "wke"
      * Explanation: The answer is "wke", with the length of 3.
      * Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
-     *
-     *
-     *
-     *
-     * Input: s = "abcabcbb"
-     * Output: 3
-     * Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
-     *
-     * Example 2:
-     *
-     * Input: s = "bbbbb"
-     * Output: 1
-     * Explanation: The answer is "b", with the length of 1.
-     *
-     * Example 3:
-     *
-     * Input: s = "pwwkew"
-     * Output: 3
-     * Explanation: The answer is "wke", with the length of 3.
-     * Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+     * </pre>
      */
-    public static String getLongestSbstrWithoutDuplicate(String name) {
-        String[] strs = name.split("");
+    public static String getLongestSubStringWithoutDuplicate(String s) {
+        String[] strs = s.split("");
         List<String> list = new ArrayList<>();
         int i = 0;
         String temp = "";
