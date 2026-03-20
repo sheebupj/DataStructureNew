@@ -15,12 +15,11 @@ public class SortedStringsStartingWithVowel {
     static Map<String, Integer> orderedStringsStartingWithVowel(List<String> strings) {
         return strings.stream().filter(s ->
                         s.matches("(?i)^[aeiou].*")
-                ).collect(Collectors.toMap(s -> s.substring(0, 1).toLowerCase(), s -> 1, Integer::sum))
+                ).collect(Collectors.toMap(s -> s.substring(0, 1)
+                        .toLowerCase(), s -> 1, Integer::sum))
                 .entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-                .entrySet().stream().sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (me1, me2) -> me1, LinkedHashMap::new));
-
-
+                              .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (me1, me2) -> me1, LinkedHashMap::new));
     }
 }
