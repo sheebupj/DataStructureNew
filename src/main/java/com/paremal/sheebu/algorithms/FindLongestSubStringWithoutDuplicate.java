@@ -128,7 +128,7 @@ public class FindLongestSubStringWithoutDuplicate {
         int left = 0;
         int maxStart = 0;
         int maxLength = 0;
-        Set<Character> windowElements = new LinkedHashSet<>();
+        Set<Character> windowElements = new HashSet<>();
         for (int right = 0; right < s.length(); right++) {
             char currentChar = s.charAt(right);
             while (windowElements.contains(currentChar)) {
