@@ -93,7 +93,7 @@ public class FindLongestSubStringWithoutDuplicate {
 
     /**
      * Optimized method to find the longest substring without duplicate characters.
-     * This implementation uses a sliding window approach with a LinkedHashSet to maintain the order of characters.
+     * This implementation uses a sliding window approach with a Hashset to maintain the order of characters.
      *
      * <p>Time Complexity: O(n), where n is the length of the input string, as each character is processed at most twice.</p>
      * <p>Space Complexity: O(min(n, m)), where m is the size of the character set (e.g., 128 for ASCII).</p>

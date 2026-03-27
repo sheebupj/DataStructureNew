@@ -531,7 +531,8 @@ public class AlogorithmTest {
         Assertions.assertEquals("abc", FindLongestSubStringWithoutDuplicate.getLongestSubStringWithoutDuplicate("abcabcbb"));
         Assertions.assertEquals("b", FindLongestSubStringWithoutDuplicate.getLongestSubStringWithoutDuplicate("bbbbb"));
         Assertions.assertEquals("wke", FindLongestSubStringWithoutDuplicate.getLongestSubStringWithoutDuplicate("pwwkew"));
-
+      //  "dvdf"
+        Assertions.assertEquals("vdf", FindLongestSubStringWithoutDuplicate.getLongestSubStringWithoutDuplicate("dvdf"));
 
 
     }
