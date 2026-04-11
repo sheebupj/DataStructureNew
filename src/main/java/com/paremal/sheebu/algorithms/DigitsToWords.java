@@ -19,6 +19,7 @@ import java.util.stream.IntStream;
  * <li>getSplitDigitsIndian(String digits): Splits the reversed digits into groups for Indian numbering system.</li>
  * <li>getSplitDigitsMillionBillionFormat(String digits): Splits the reversed digits into groups for Western numbering system.</li>
  * <li>reverse(String s): Reverses the given string.</li>
+ * <li>reverseWithStringBuilder(String s): Reverses the given string using reverse method in StringBuilder class.</li>
  * <li>twoDigitToWord(String digit): Converts a two-digit string to its word representation.</li>
  * <li>threeDigitToWord(String digit): Converts a three-digit string to its word representation.</li>
  * <li>getFirstDigitMap(): Returns a map of numbers to their word representations.</li>
@@ -62,7 +63,7 @@ public class DigitsToWords {
     public  static String digitToWordIndian(String digits) {
         //String digits = digit + "";
         if (digits.length() > 9) return "maximum allowed digits is 9 and current input is " + digits.length();
-        List<String> list = getSplitDigitsIndian(reverse(digits));
+        List<String> list = getSplitDigitsIndian(reverseWithStringBuilder(digits));
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
@@ -87,7 +88,7 @@ public class DigitsToWords {
         //String digits = digit + "";
         if (digits.length() > 21)
             return "max digits allowed is 21 and  current input contains " + digits.length() + " digits";
-        List<String> list = getSplitDigitsMillionBillionFormat(reverse(digits));
+        List<String> list = getSplitDigitsMillionBillionFormat(reverseWithStringBuilder(digits));
         List<String> suffixes = getSuffixesListMillionBillionFormat();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
@@ -162,6 +163,15 @@ public class DigitsToWords {
                 .map(String::valueOf)
                 .collect(Collectors.joining());
 
+    }
+    /**
+     * Reverses the given string using StringBuilder.
+     *
+     * @param s The string to reverse.
+     * @return The reversed string.
+     */
+    static String reverseWithStringBuilder(String s) {
+        return new StringBuilder(s).reverse().toString();
     }
 
     /**
