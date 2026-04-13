@@ -22,6 +22,7 @@ import java.util.stream.IntStream;
  * <li>reverseWithStringBuilder(String s): Reverses the given string using reverse method in StringBuilder class.</li>
  * <li>twoDigitToWord(String digit): Converts a two-digit string to its word representation.</li>
  * <li>threeDigitToWord(String digit): Converts a three-digit string to its word representation.</li>
+ * <li>fiveDigitToWord(String digit): Converts a five-digit string to its word representation.</li>
  * <li>getFirstDigitMap(): Returns a map of numbers to their word representations.</li>
  * <li>getSplittingPositionsIndian(): Returns the splitting positions for Indian numbering system.</li>
  * <li>getSplittingPositionsWesternFormat(): Returns the splitting positions for Western numbering system.</li>
@@ -38,7 +39,7 @@ public class DigitsToWords {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println(digitToWordIndian("1234567890"));
+        System.out.println(digitToWordIndian("12345678012"));
         System.out.println(digitToWordIndian("100000000"));
         System.out.println(digitToWordIndian("7777777"));
         System.out.println(digitToWordMillionBillionFormat("123456789"));
@@ -53,38 +54,47 @@ public class DigitsToWords {
         System.out.println(digitToWordMillionBillionFormat("1000000000000000"));
         System.out.println(digitToWordMillionBillionFormat("1000000000000000000"));
     }
+
     /**
      * Converts a string of digits to words using the Indian numbering system (lakhs and crores).
-     * Supports up to 9 digits.
+     * Supports up to 12 digits.
      *
      * @param digits the string representation of the number
      * @return the word representation of the number or an error message if input is too long
      */
-    public  static String digitToWordIndian(String digits) {
+    public static String digitToWordIndian(String digits) {
         //String digits = digit + "";
-        if (digits.length() > 9) return "maximum allowed digits is 9 and current input is " + digits.length();
+        if (digits.length() > 12) return "maximum allowed digits is 12 and current input is " + digits.length();
         List<String> list = getSplitDigitsIndian(reverseWithStringBuilder(digits));
         List<String> suffixes = getSuffixesListIndian();
         StringBuilder wordDigits = new StringBuilder();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if(Integer.parseInt(list.get(i))>0) {
+            if (Integer.parseInt(list.get(i)) > 0) {
                 if (i == 0)
                     wordDigits.append(" and ").append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i));
-                else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                else if (i == 4) {
+                    if (list.get(i).length() <= 2)
+                        wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                    else if (list.get(i).length() == 3)
+                        wordDigits.append(threeDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+                    else
+                        wordDigits.append(fiveDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
+
+                } else wordDigits.append(twoDigitToWord(list.get(i))).append(" ").append(suffixes.get(i)).append(" ");
             }
         }
         return wordDigits.toString();
 
     }
 
-   /**
-    * Converts a string of digits to words using the Western numbering system (millions, billions, etc.).
-    * Supports up to 21 digits.
-    *
-    * @param digits the string representation of the number
-    * @return the word representation of the number or an error message if input is too long
-    */
-   public static String digitToWordMillionBillionFormat(String digits) {
+    /**
+     * Converts a string of digits to words using the Western numbering system (millions, billions, etc.).
+     * Supports up to 21 digits.
+     *
+     * @param digits the string representation of the number
+     * @return the word representation of the number or an error message if input is too long
+     */
+    public static String digitToWordMillionBillionFormat(String digits) {
         //String digits = digit + "";
         if (digits.length() > 21)
             return "max digits allowed is 21 and  current input contains " + digits.length() + " digits";
@@ -135,7 +145,7 @@ public class DigitsToWords {
      * @param digits the reversed string of digits
      * @return list of digit groups
      */
-    static List<String>  getSplitDigitsMillionBillionFormat(String digits) {
+    static List<String> getSplitDigitsMillionBillionFormat(String digits) {
         List<Integer[]> splitPositions = getSplittingPositionsWesternFormat();
         int len = digits.length();
         List<String> list = new ArrayList<>();
@@ -164,6 +174,7 @@ public class DigitsToWords {
                 .collect(Collectors.joining());
 
     }
+
     /**
      * Reverses the given string using StringBuilder.
      *
@@ -211,6 +222,19 @@ public class DigitsToWords {
         String twoDigits = digit.substring(0, 2);
         String hundredPosition = digit.substring(2);
         return map.getOrDefault(Integer.parseInt(hundredPosition), "") + " hundred  " + twoDigitToWord(twoDigits);
+    }
+
+    /**
+     * Converts a five-digit string to its word representation.
+     *
+     * @param digit the five-digit string
+     * @return the word representation
+     */
+    static String fiveDigitToWord(String digit) {
+        int len = digit.length();
+        String threeDigits = digit.substring(0, 3);
+        String thousandPositon = digit.substring(3, len);
+        return twoDigitToWord(thousandPositon) + " thousand " + threeDigitToWord(threeDigits);
     }
 
     /**
@@ -263,7 +287,7 @@ public class DigitsToWords {
         list.add(new Integer[]{2, 3});
         list.add(new Integer[]{3, 5});
         list.add(new Integer[]{5, 7});
-        list.add(new Integer[]{7, 9});
+        list.add(new Integer[]{7, 12});
         return list;
     }
 
