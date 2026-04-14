@@ -21,20 +21,18 @@ public class CheckOpeningClosingBracketsBalanced {
      */
     public static void main(String[] argh) {
 
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int nolines = 0, readcout = 0;
+        BufferedReader reader= new BufferedReader(new InputStreamReader(System.in));
+        int nolines,readcout=0;
         try {
-            System.out.println("Enter No of inputs:");
-            nolines = Integer.valueOf(reader.readLine());
+            nolines=Integer.parseInt(reader.readLine());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        while (readcout < nolines) {
+        while(readcout<nolines){
 
 
             try {
-                boolean result = checkBalancedWithStack(reader.readLine().trim());
+                boolean result=checkBalancedWithStack(reader.readLine().trim());
                 System.out.println(result);
                 readcout++;
             } catch (IOException e) {
