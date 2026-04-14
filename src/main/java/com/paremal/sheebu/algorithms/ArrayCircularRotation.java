@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.stream.Stream;
 
 public class ArrayCircularRotation {
+
+    //efficient code for arraycircularRotation
     public static int[] circularRotation(int[] nos, int k) {
         int n = nos.length;
         k %= n; // Optimize k to avoid unnecessary rotations
@@ -14,6 +16,19 @@ public class ArrayCircularRotation {
         int[] result = new int[n];
         System.arraycopy(nos, n - k, result, 0, k); // Copy last k elements to the start
         System.arraycopy(nos, 0, result, k, n - k); // Copy the rest to the end
+
+        return result;
+    }
+    //with iterating through input array
+    public static int[] circularRotationUsingArrayIteration(int[] nos, int k) {
+        int n = nos.length;
+        k %= n; // Optimize k to avoid unnecessary rotations
+        if (k == 0) return nos; // No rotation needed
+
+        int[] result = new int[n];
+       for(int i=0;i<n;i++){
+           result[(i+k)%n]=nos[i];
+       }
 
         return result;
     }
