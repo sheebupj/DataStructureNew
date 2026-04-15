@@ -1,11 +1,15 @@
 package com.paremal.sheebu.algorithms;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * This class provides functionality to convert numeric digits into their word representations
@@ -38,7 +42,7 @@ public class DigitsToWords {
      *
      * @param args command line arguments (not used)
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println(digitToWordIndian("12345678012"));
         System.out.println(digitToWordIndian("100000000"));
         System.out.println(digitToWordIndian("7777777"));
@@ -53,7 +57,28 @@ public class DigitsToWords {
         System.out.println(digitToWordMillionBillionFormat("1000000000000"));
         System.out.println(digitToWordMillionBillionFormat("1000000000000000"));
         System.out.println(digitToWordMillionBillionFormat("1000000000000000000"));
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter a number convert to words:");
+        String inputs = br.readLine()
+                        .replaceAll("\\s+$", "");
+
+        System.out.println("which format you want...For western Enter 1 and for inidan enter 2");
+        int k=Integer.parseInt(br.readLine().trim());
+        if(k==1){
+            System.out.println(digitToWordMillionBillionFormat(inputs));
+        }
+        else if(k==2){
+            System.out.println(digitToWordIndian(inputs));
+        }
+        else
+            System.out.println("invalid input for format selection. Only 1 or 2 is allowed.");{
+
+        }
+
     }
+
+
 
     /**
      * Converts a string of digits to words using the Indian numbering system (lakhs and crores).
