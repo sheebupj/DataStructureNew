@@ -50,16 +50,29 @@ after flipping  vertically
 /*
 functional interface for doing rotating operations and flip operations using array
  */
+/**
+ * Functional interface for performing rotation and flip operations on 2D arrays.
+ */
 @FunctionalInterface
 interface Operation {
     Integer[][] doOp(Integer[][] doOp);
 }
 //functional interface of flip rotate operations without intermediate array object
+/**
+ * Functional interface for performing rotation and flip operations on 2D lists without intermediate arrays.
+ */
 @FunctionalInterface
 interface OperationList {
     List<List<Integer>> doOp(List<List<Integer>> doOp);
 }
 
+/**
+ * This class provides functionality for rotating and flipping 2D matrices (images) represented as lists of lists or 2D arrays.
+ * It supports clockwise and anti-clockwise rotations by 90 degrees, as well as horizontal and vertical flips.
+ * The operations can be performed using functional interfaces for flexibility.
+ *
+ * @author Sheebu P J
+ */
 public class FlipRotate {
 
     public static void main(String[] args) {
@@ -274,6 +287,13 @@ after flipping vertical it becomes
 4 5 6
 1 2 3
  */
+    /**
+     * Flips the given 2D list vertically (upside down).
+     * Example: [[1,2,3],[4,5,6],[7,8,9]] becomes [[7,8,9],[4,5,6],[1,2,3]]
+     *
+     * @param inputList the input 2D list to flip
+     * @return the vertically flipped 2D list
+     */
     static List<List<Integer>> verticalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
         Integer[][] arr2d = inputList.stream().map(l-> l.toArray(Integer[]::new)).toArray(Integer [][]::new);
@@ -299,6 +319,13 @@ after flipping vertical it becomes
   6 5 4
   9 8 7
    */
+    /**
+     * Flips the given 2D list horizontally (left-right mirror).
+     * Example: [[1,2,3],[4,5,6],[7,8,9]] becomes [[3,2,1],[6,5,4],[9,8,7]]
+     *
+     * @param inputList the input 2D list to flip
+     * @return the horizontally flipped 2D list
+     */
     static List<List<Integer>> horizondalFlip(List<List<Integer>> inputList) {
         int size = inputList.size();
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
@@ -323,6 +350,13 @@ after flipping vertical it becomes
    8 5 2
    9 6 3
   */
+    /**
+     * Rotates the given 2D list clockwise by 90 degrees.
+     * Example: [[1,2,3],[4,5,6],[7,8,9]] becomes [[7,4,1],[8,5,2],[9,6,3]]
+     *
+     * @param inputList the input 2D list to rotate
+     * @return the clockwise rotated 2D list
+     */
     static List<List<Integer>> rotateClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
@@ -349,6 +383,13 @@ after flipping vertical it becomes
    2 5 8
    1 4 7
     */
+    /**
+     * Rotates the given 2D list anti-clockwise by 90 degrees.
+     * Example: [[1,2,3],[4,5,6],[7,8,9]] becomes [[3,6,9],[2,5,8],[1,4,7]]
+     *
+     * @param inputList the input 2D list to rotate
+     * @return the anti-clockwise rotated 2D list
+     */
     static List<List<Integer>> rotateAntiClockWise(List<List<Integer>> inputList) {
         int size = inputList.size();
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new)).toArray(Integer[][]::new);
@@ -372,6 +413,13 @@ after flipping vertical it becomes
         generic method that do all flip and rotating operations (rotate clockwise and anti-clockwise
         and flipping vertical and horizontal accepting functional interface 'operation' as parameter
      */
+    /**
+     * Applies a given operation to the input list using 2D arrays as intermediate.
+     *
+     * @param inputList the input 2D list
+     * @param operation the operation to apply (e.g., clockwise, anti-clockwise, flip horizontal, flip vertical)
+     * @return the result after applying the operation
+     */
     static List<List<Integer>> flipRotate(List<List<Integer>> inputList, Operation operation) {
         //converting two-dimensional list to two-dimensional array
         Integer[][] arr2d = inputList.stream().map(l -> l.toArray(Integer[]::new))
@@ -382,6 +430,11 @@ after flipping vertical it becomes
     }
 
 
+    /**
+     * Displays the 2D list to the console.
+     *
+     * @param inputList the list to display
+     */
     static void display(List<List<Integer>> inputList) {
         for (List<Integer> olist : inputList) {
             for (Integer igr : olist) {
@@ -392,6 +445,11 @@ after flipping vertical it becomes
         System.out.println();
     }
 
+    /**
+     * Displays the 2D array to the console.
+     *
+     * @param ar2d the 2D array to display
+     */
     static void displayArray(Integer[][] ar2d) {
         List<List<Integer>> inputList = Arrays.stream(ar2d).map(Arrays::asList).collect(Collectors.toList());
         display(inputList);
@@ -399,6 +457,12 @@ after flipping vertical it becomes
 
     /*
     pre-fill two-dimensional arraylist with null
+     */
+    /**
+     * Fills a 2D list with null values.
+     *
+     * @param arList the list to fill
+     * @param size the size of the square list
      */
     static void fill2dList(List<List<Integer>> arList, int size) {
         for (int i = 0; i < size; i++) {
@@ -408,6 +472,24 @@ after flipping vertical it becomes
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
