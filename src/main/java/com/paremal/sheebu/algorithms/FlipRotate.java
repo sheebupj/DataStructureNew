@@ -47,9 +47,7 @@ after flipping  vertically
 
 
 
-/*
-functional interface for doing rotating operations and flip operations using array
- */
+
 /**
  * Functional interface for performing rotation and flip operations on 2D arrays.
  */
@@ -57,7 +55,7 @@ functional interface for doing rotating operations and flip operations using arr
 interface Operation {
     Integer[][] doOp(Integer[][] doOp);
 }
-//functional interface of flip rotate operations without intermediate array object
+
 /**
  * Functional interface for performing rotation and flip operations on 2D lists without intermediate arrays.
  */
@@ -409,10 +407,7 @@ after flipping vertical it becomes
 
 
 
-    /*
-        generic method that do all flip and rotating operations (rotate clockwise and anti-clockwise
-        and flipping vertical and horizontal accepting functional interface 'operation' as parameter
-     */
+
     /**
      * Applies a given operation to the input list using 2D arrays as intermediate.
      *
@@ -455,9 +450,7 @@ after flipping vertical it becomes
         display(inputList);
     }
 
-    /*
-    pre-fill two-dimensional arraylist with null
-     */
+
     /**
      * Fills a 2D list with null values.
      *
