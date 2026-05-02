@@ -1,4 +1,4 @@
-package com.paremal.sheebu.data_structure.tree;
+package com.paremal.sheebu.data_structure.tree.rtb;
 
 // Node structure
 class Node {
@@ -8,6 +8,10 @@ class Node {
     Node right;
     boolean color; // true for RED, false for BLACK
 
+    public Node(int data) {
+        this.data = data;
+    }
+}
 
 public class RedBlackTree {
     private Node root;
@@ -199,5 +203,4 @@ public class RedBlackTree {
 
         bst.printTree();
     }
-}
 }

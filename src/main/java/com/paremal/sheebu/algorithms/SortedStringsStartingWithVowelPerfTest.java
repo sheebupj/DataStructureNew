@@ -72,7 +72,7 @@ public class SortedStringsStartingWithVowelPerfTest {
      * Run all three methods and display results
      */
     public static void runBenchmarks() {
-        int[] testSizes = {1_000, 10_000, 100_000, 1_000_000};
+        int[] testSizes = {1_000, 10_000, 100_000, 10_000_000};
 
         System.out.println("╔════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║  PERFORMANCE BENCHMARK: orderedStringsStartingWithVowel Implementations  ║");

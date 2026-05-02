@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class FindSubStringIndexesInA_String {
     /*
-    Find indexs of substring in a String
+    Find indexes of substring in a String
      */
     static Optional<List<Integer>> findIndexes(String str, String subStr){
         List<Integer> indexList= new ArrayList<>();

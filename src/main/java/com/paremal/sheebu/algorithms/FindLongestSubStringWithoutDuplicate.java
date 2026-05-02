@@ -44,23 +44,17 @@ public class FindLongestSubStringWithoutDuplicate {
      *
      * @param s the input string to search for the longest substring without duplicates
      * @return the longest substring without duplicate characters; empty string if input is null or empty
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "abcabcbb"
      * Output: "abc"
      * Explanation: The answer is "abc", with the length of 3.
      * </pre>
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "bbbbb"
      * Output: "b"
      * Explanation: The answer is "b", with the length of 1.
      * </pre>
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "pwwkew"
      * Output: "wke"
      * Explanation: The answer is "wke", with the length of 3.
@@ -78,12 +72,13 @@ public class FindLongestSubStringWithoutDuplicate {
                 temp += strs[j];
                 map.put(strs[j], 1);
                 i++;
-                if(i==strs.length){list.add(temp);}
-            }
-            else {
+                if (i == strs.length) {
+                    list.add(temp);
+                }
+            } else {
                 list.add(temp);
                 temp = strs[j];
-                map= new HashMap<>();
+                map = new HashMap<>();
                 map.put(strs[j], 1);
                 i++;
             }
@@ -100,23 +95,17 @@ public class FindLongestSubStringWithoutDuplicate {
      *
      * @param s the input string to search for the longest substring without duplicates
      * @return the longest substring without duplicate characters; empty string if input is null or empty
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "abcabcbb"
      * Output: "abc"
      * Explanation: The answer is "abc", with the length of 3.
      * </pre>
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "bbbbb"
      * Output: "b"
      * Explanation: The answer is "b", with the length of 1.
      * </pre>
-     *
-     * @example
-     * <pre>
+     * @example <pre>
      * Input: s = "pwwkew"
      * Output: "wke"
      * Explanation: The answer is "wke", with the length of 3.
