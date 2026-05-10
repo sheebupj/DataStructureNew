@@ -90,7 +90,7 @@ public class DigitsToWords {
      */
     public static String digitToWordIndian(String digits) {
         //String digits = digit + "";
-        if(!digits.matches("\\d+")) return "invalid number format";
+        if(!digits.matches("\\d+")) return "invalid input";
         if (digits.length() > 12) return "maximum allowed digits is 12 and current input is " + digits.length();
         List<String> list = getSplitDigitsIndian(reverseWithStringBuilder(digits));
         List<String> suffixes = getSuffixesListIndian();
@@ -123,7 +123,7 @@ public class DigitsToWords {
      */
     public static String digitToWordMillionBillionFormat(String digits) {
         //String digits = digit + "";
-        if(!digits.matches("\\d+")) return "invalid number format";
+        if(!digits.matches("\\d+")) return "invalid input";
         if (digits.length() > 21)
             return "max digits allowed is 21 and  current input contains " + digits.length() + " digits";
         List<String> list = getSplitDigitsMillionBillionFormat(reverseWithStringBuilder(digits));
