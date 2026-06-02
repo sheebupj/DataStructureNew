@@ -57,22 +57,17 @@ public class CommandProcessorDualLogin {
         // Parse the command into parts
         String[] commands = rawCommandInput.split("\\s+");
         String action = commands[0].toUpperCase();
-
+        if (commands.length != 3) return  "Error: wrong number of arguments";
         try {
             // Execute the corresponding command based on the action
             return switch (action) {
-                case "LOGIN" -> {
-                    if (commands.length != 3) yield "Error: wrong number of arguments";
-                    yield new LoginCommand1(authService, commands[1], commands[2]).execute();
-                }
-                case "LOGOUT" -> {
-                    if (commands.length != 3) yield "Error: wrong number of arguments";
-                    yield new LogoutCommand1(authService, commands[1], commands[2]).execute();
-                }
-                case "REGISTER" -> {
-                    if (commands.length != 3) yield "Error: wrong number of arguments";
-                    yield new RegisterCommand1(authService, commands[1], commands[2]).execute();
-                }
+
+                case "LOGIN" -> new LoginCommand1(authService, commands[1], commands[2]).execute();
+
+                case "LOGOUT" -> new LogoutCommand1(authService, commands[1], commands[2]).execute();
+
+                case "REGISTER" -> new RegisterCommand1(authService, commands[1], commands[2]).execute();
+
                 default -> "Error: invalid command type";
             };
 
