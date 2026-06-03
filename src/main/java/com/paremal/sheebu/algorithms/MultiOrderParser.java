@@ -19,7 +19,7 @@ public class MultiOrderParser {
     // '([^']+)' matches characters inside single quotes and captures them as a group
     /*
       sample input
-     [('01','12:30','15.50'),('02','12:40','17.50'),('01','12:30','15.50'),('01','13:30','16.50'),('01','13:30','17.50')]
+     [('01','12:30','15.50'),('02','12:40','17.50'),('03','12:30','15.50'),('04','13:30','16.50'),('05','13:30','17.50')]
      */
     private static final Pattern ORDER_PATTERN =
             Pattern.compile("\\('([^']+)','([^']+)','([^']+)'\\)");
