@@ -39,7 +39,8 @@ public class SortedStringsStartingWithVowel {
      *
      * <p>This method uses streams to filter non-null and non-empty strings, then filters for vowel-starting strings,
      * and collects into a TreeMap for automatic alphabetical sorting by key.</p>
-     * <p>Time Complexity: O(n * m + k log k), where n is the number of strings, m is the average string length for regex matching, and k is the number of unique vowel-starting letters.</p>
+     * <p>Time Complexity: O(n * m + k log k), where n is the number of strings, m is the average string length for
+     * regex matching, and k is the number of unique vowel-starting letters.</p>
      * <p>Space Complexity: O(k), where k is the number of unique vowel-starting letters, for the resulting map.</p>
      *
      * @param strings the list of strings to process
@@ -47,15 +48,16 @@ public class SortedStringsStartingWithVowel {
      */
     static Map<String, Integer> orderedStringsStartingWithVowel(List<String> strings) {
         return strings.stream()
-                .filter(s->s!=null && !s.isEmpty())
+                .filter(s -> s != null && !s.isEmpty())
                 .filter(s -> s.matches("(?i)^[aeiou].*"))
                 // Group by first letter (lowercase) and count occurrences
                 // SPACE: Creates String object for each key with substring() - O(n) object creation
-                .collect(Collectors.groupingBy( 
-                        s-> s.substring(0, 1).toLowerCase(),  // Creates new String object for each string
+                .collect(Collectors.groupingBy(
+                        s -> s.substring(0, 1).toLowerCase(),  // Creates new String object for each string
                         TreeMap::new,  // TreeMap automatically sorts keys alphabetically
                         Collectors.summingInt(s -> 1)));  // Count occurrences
     }
+
     /**
      * METHOD 2: Set-based vowel checking with double-stream sorting
      * PERFORMANCE: O(n + k log k + k log k) - IMPROVED with Set but still double streaming
@@ -64,25 +66,25 @@ public class SortedStringsStartingWithVowel {
      */
     static Map<String, Integer> orderedStringsStartingWithVowel1(List<String> strings) {
         // Create vowel set - EFFICIENT: Set.contains() is O(1), much better than List.contains()
-       final Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
-        
+        final Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
+
         return strings.stream()
-                
-                .filter(s->s!=null && !s.isEmpty())
+
+                .filter(s -> s != null && !s.isEmpty())
                 // Filter 2: Check if first character is vowel using Set.contains() - O(n) = O(1) per lookup
                 // PERFORMANCE: Set.contains() performs O(1) hash lookup (much better than List.contains())
                 .filter(s -> vowels.contains(Character.toLowerCase(s.charAt(0))))
                 .collect(Collectors.groupingBy(
-                        s-> Character.toLowerCase(s.charAt(0)),  // Keeps as Character type
+                        s -> Character.toLowerCase(s.charAt(0)),  // Keeps as Character type
                         Collectors.summingInt(s -> 1)))
                 .entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(
-                        me-> me.getKey().toString(),  // Convert Character to String
+                        me -> me.getKey().toString(),  // Convert Character to String
                         Map.Entry::getValue,
-                        (me1,m2)->me1,
-                        LinkedHashMap::new));
+                        (me1, m2) -> me1,LinkedHashMap::new));
     }
+
     /**
      * METHOD 3: Optimised approach using Set-based vowel checking with true single-pass processing
      * PERFORMANCE: O(n + k log k) - BEST performance with Set O(1) lookup
@@ -95,7 +97,7 @@ public class SortedStringsStartingWithVowel {
 
         Map<String, Integer> result = new LinkedHashMap<>();
 
-       strings.stream()
+        strings.stream()
                 .filter(s -> s != null && !s.isEmpty() && vowels.contains(Character.toLowerCase(s.charAt(0))))
                 .forEach(s -> result.merge(
                         String.valueOf(Character.toLowerCase(s.charAt(0))), 1, Integer::sum));
@@ -105,7 +107,6 @@ public class SortedStringsStartingWithVowel {
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new));
+                        (e1, e2) -> e1, LinkedHashMap::new));
     }
 }
